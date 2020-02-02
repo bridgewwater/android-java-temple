@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+// apply from: rootProject.file("gradle/codeQualityApp.gradle")
+
+android {
+    compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
+    //    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "com.sinlov.android.demo.temp"
+        minSdkVersion ANDROID_MIN_SDK_VERSION as int
+        targetSdkVersion ANDROID_TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+//        multiDexEnabled true
+    }
+
+    lintOptions {
+//        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    signingConfigs {
+        keyBuild {
+            storeFile file(project.hasProperty('KEY_BUILD_STOREFILE') ? KEY_1_STOREFILE : '../keystore/debug.keystore')
+            storePassword project.hasProperty('KEY_BUILD_STOREPASS') ? KEY_1_STOREPASS : 'android'
+            keyAlias project.hasProperty('KEY_BUILD_KEYALIAS') ? KEY_1_KEYALIAS : 'android'
+            keyPassword project.hasProperty('KEY_BUILD_KEYPASS') ? KEY_1_KEYPASS : 'android'
+        }
+    }
+
+    // testOptions.unitTests {
+    //     all {
+    //         jacoco {
+    //             includeNoLocationClasses = true
+    //         }
+    //     }
+    // }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keyBuild
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keyBuild
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // test start
+    // Junit
+    testImplementation test_depends.junit,
+            // Mockito
+            test_depends.mockito_core,
+            // Robolectric + Support v4
+            test_depends.robolectric,
+            test_depends.robolectric_shadows_support_v4,
+            // EasyMock
+            test_depends.easymock,
+            // PowerMock
+            test_depends.powermock_core,
+            test_depends.powermock_module_junit4,
+            // PowerMock + EasyMock extension
+            test_depends.powermock_api_easymock
+
+    //    androidTestImplementation android_test_depends.robotium_solo
+    // test end
+
+    // butter knife only for module test!
+    annotationProcessor apt_compiler.butterknife_compiler
+    implementation depends.com_android_support_support_v4,
+            depends.com_android_support_appcompat_7,
+//            depends.com_android_support_recyclerview_v7,
+//            depends.com_android_support_cardview_v7,
+//            depends.com_android_support_design,
+            depends.butterknife,
+            depends.com_android_support_support_annotations
+
+    // TODO add module
+    // implementation project(':plugin')
+}
+

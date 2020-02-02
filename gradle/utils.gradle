@@ -1,0 +1,211 @@
+/**
+ * use like
+ * <pre>
+ *     apply from: rootProject.file("gradle/utils.gradle")
+ * </pre>
+ *
+ * You can use checkBasePropertiesConfig at root project for check
+ * <pre>
+ *  task clean(type: Delete) {*      checkBasePropertiesConfig()
+ *}* </pre>
+ */
+
+def checkBasePropertiesConfig() {
+    String versionName = getVersionName()
+    int versionCode = getVersionCode()
+    String groupSet = getGroupSet()
+    if (isStringEmpty(versionName) || versionCode == 0 || isStringEmpty(groupSet)) {
+        throw new IllegalArgumentException("checkBasePropertiesConfig error, please check log!")
+    } else {
+        print String.format("checkBasePropertiesConfig success!\n\tVersionName: %s\n\tVersionCode: %s\n\tgroup: %s\n\n", versionName, versionCode, groupSet)
+    }
+}
+
+/**
+ * print Error info at log of gradle bt tag
+ * @param tag
+ * @return
+ */
+def printErrorGradlePropertiesNotSet(tag) {
+    System.err.println String.format('Stop build by error, you are not set [ %s ] at gradle.properties, please set and retry!', tag)
+}
+
+/**
+ * if obj is null or is instanceof {@link String} and equals "" return True
+ * will print obj not instanceof {@link String}
+ * @param str
+ * @return
+ */
+boolean isStringEmpty(str) {
+    if (str == null) {
+        return true
+    } else {
+        if (str instanceof String) {
+            return str.equals("")
+        } else {
+            print String.format("warning this object %s, is not String!", str)
+            return true
+        }
+    }
+}
+
+/**
+ * if gradle.properties key has VERSION_NAME and contains SNAPSHOT is not release build
+ * @return
+ */
+boolean isReleaseBuild() {
+    return VERSION_NAME.contains("SNAPSHOT") == false
+}
+
+/**
+ * can disable task which name contains Debug
+ * @return
+ */
+def disableDebugBuildTask() {
+    def targetTasks = project.tasks.findAll { task ->
+        task.name.contains("Debug")
+    }
+    targetTasks.each {
+        print String.format('disable debug task: %s', $ { it.name })
+        it.setEnabled false
+    }
+}
+
+/**
+ * check is Mac System
+ * @return
+ */
+boolean isMacSys() {
+    return System.getProperty("os.name").toLowerCase().contains("mac os x")
+}
+
+/**
+ * check is windows system
+ * @return
+ */
+boolean isWindowSys() {
+    return System.getProperty("os.name").toLowerCase().contains("windows")
+}
+
+String getVersionName() {
+    if (hasProperty('VERSION_NAME')) {
+        return VERSION_NAME
+    } else {
+        printErrorGradlePropertiesNotSet('VERSION_NAME')
+        return ""
+    }
+}
+
+int getVersionCode() {
+    if (hasProperty('VERSION_CODE')) {
+        return VERSION_CODE as int
+    } else {
+        printErrorGradlePropertiesNotSet('VERSION_CODE')
+        return 0
+    }
+}
+
+String getGroupSet() {
+    if (hasProperty('GROUP')) {
+        return GROUP
+    } else {
+        printErrorGradlePropertiesNotSet('GROUP')
+        return ""
+    }
+}
+
+String getProjectRootName() {
+    if (hasProperty('PROJECT_ROOT_NAME')) {
+        return PROJECT_ROOT_NAME
+    } else {
+        def rootPathName = rootDir.name
+        return rootPathName
+    }
+}
+
+/**
+ * from gradle.properties key PROJECT_FATHER_PATH get path set
+ * if not has PROJECT_FATHER_PATH set, will auto get project father path
+ * @return set by PROJECT_FATHER_PATH or auto get father path
+ */
+String projectFatherPath() {
+    if (hasProperty('PROJECT_FATHER_PATH')) {
+        def configOfCommLibModulePath = COMM_LIB_MODULE_FATHER_PATH
+        if (!configOfCommLibModulePath.endsWith(File.separator)) {
+            configOfCommLibModulePath = configOfCommLibModulePath + File.separator
+        }
+        print String.format('custom set projectFatherPath: %s\n', configOfCommLibModulePath)
+        return configOfCommLibModulePath
+    } else {
+        def rootAbsPath = rootDir.getAbsolutePath()
+        def buffer = new StringBuffer()
+        def separator = isWindowSys() ? "\\\\" : File.separator
+        def arrayOfStrings = rootAbsPath.split(separator)
+        for (int i = 0; i < arrayOfStrings.size() - 1; i++) {
+            buffer.append(arrayOfStrings[i])
+            buffer.append(File.separator)
+        }
+        print String.format('auto find projectFatherPath: %s\n', buffer.toString())
+        return buffer.toString()
+    }
+}
+
+def printAllTaskInOut() {
+    gradle.taskGraph.afterTask { task ->
+        try {
+            StringBuffer taskDetails = new StringBuffer()
+            taskDetails << """--------------------------
+name: $task.name
+group: $task.group
+description: $task.description
+task.convention: $task.convention.plugins
+inputs:
+"""
+            task.inputs.files.each { it ->
+                taskDetails << " ${it.absolutePath}\n"
+            }
+            taskDetails << "outputs:\n"
+            task.outputs.files.each { it ->
+                taskDetails << " ${it.absolutePath}\n"
+            }
+
+            taskDetails << "--------------------------"
+            println taskDetails
+        }
+        catch (Exception e) {
+            e.printStackTrace()
+        }
+    }
+}
+
+def printAllTaskDepends() {
+    project.tasks.all {
+        Task t = it
+        String taskName = it.name
+        println("-------- taskName -----------:" + taskName + " :" + it.getPath())
+        it.getTaskDependencies().any {
+            println("-------- taskName ----------- dependsOn -----------------:")
+            it.getDependencies(t).findAll() {
+                println("----------------------------------:" + it.getPath())
+            }
+        }
+
+    }
+}
+
+ext {
+    checkBasePropertiesConfig = this.&checkBasePropertiesConfig
+    printErrorGradlePropertiesNotSet = this.&printErrorGradlePropertiesNotSet
+    isStringEmpty = this.&isStringEmpty
+    isReleaseBuild = this.&isReleaseBuild
+    disableDebugBuildTask = this.&disableDebugBuildTask
+    isMacSys = this.&isMacSys
+    isWindowSys = this.&isWindowSys
+    getVersionName = this.&getVersionName
+    getVersionCode = this.&getVersionCode
+    getGroupSet = this.&getGroupSet
+    getProjectRootName = this.&getProjectRootName
+    projectFatherPath = this.&projectFatherPath
+    printAllTaskInOut = this.&printAllTaskInOut
+    printAllTaskDepends = this.&printAllTaskDepends
+}

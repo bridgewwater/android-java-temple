@@ -1,0 +1,59 @@
+/**
+ * must has
+ * <pre>
+ *      classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
+ * </pre>
+ *
+ * and over 'com.android.tools.build:gradle:2.2.+'
+ *
+ */
+apply plugin: "org.sonarqube"
+apply from: rootProject.file("gradle/utils.gradle")
+
+def getSonarProjectNameTag() {
+    return hasProperty('SONAR_PROJECT_NAME_TAG') ? SONAR_PROJECT_NAME_TAG : "Android:"
+}
+
+def getSonarHost() {
+    return hasProperty('SONAR_HOST_URL') ? SONAR_HOST_URL : "http://sonar.not_set_host.com"
+}
+
+def getSonarUser() {
+    return hasProperty('SONAR_LOGIN_USER') ? SONAR_LOGIN_USER : "defaultUser"
+}
+
+def getSonarPassword() {
+    return hasProperty('SONAR_LOGIN_PASSWORD') ? SONAR_LOGIN_PASSWORD : "defaultPassword"
+}
+
+def getOutSonarSources() {
+    return hasProperty('SONAR_SOURCES') ? SONAR_SOURCES : 'src'
+}
+
+def getSonarSourcesEncoding() {
+    return hasProperty('SONAR_SOURCES_ENCODING') ? SONAR_SOURCES_ENCODING : 'UTF-8'
+}
+
+def getSonarDefaultSkipModule() {
+    return hasProperty('SONAR_DEFAULT_SKIP_MODULE') ? SONAR_DEFAULT_SKIP_MODULE : 'sample'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", getSonarProjectNameTag() + getGroupSet() + ":" + getProjectRootName()
+        property "sonar.projectKey", getGroupSet() + ":" + getProjectRootName()
+        property "sonar.projectVersion", getVersionName()
+        property "sonar.host.url", getSonarHost()
+        property "sonar.login", getSonarUser()
+        property "sonar.password", getSonarPassword()
+
+        property "sonar.sources", getOutSonarSources()
+        property "sonar.sourceEncoding", getSonarSourcesEncoding()
+    }
+}
+
+project(":" + getSonarDefaultSkipModule()) {
+    sonarqube {
+        skipProject = true
+    }
+}

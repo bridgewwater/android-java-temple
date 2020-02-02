@@ -1,0 +1,15 @@
+/**
+ * need dependencies with
+ * <pre>
+ *     classpath "com.gradle:build-scan-plugin:1.4"
+ * </pre>
+ *
+ * or more than this version
+ */
+
+apply plugin: "com.gradle.build-scan"
+
+buildScan {
+    licenseAgreementUrl = "https://gradle.com/terms-of-service"
+    licenseAgree = "yes"
+}

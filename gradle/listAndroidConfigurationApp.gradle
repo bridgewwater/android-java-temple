@@ -1,0 +1,43 @@
+
+// can use kapt, annotationProcessor, provided more info see configurations
+// Creates tasks based on the application build variant (productFlavor + buildType = variant)
+android.applicationVariants.all { variant ->
+    def variantName = variant.name.capitalize()
+    String compileTaskName = "compile"
+    String compileTaskHint = "Compile"
+    task("listJar${compileTaskHint}$variantName", type: Task, dependsOn: "compile${variantName}JavaWithJavac") {
+        group "list"
+        description "list ${compileTaskName} dependencies jar path"
+        StringBuffer details = new StringBuffer()
+        details << "------------ listJar${compileTaskHint} start --------------\n"
+        details << "project name: ${project.name}\n"
+        details << "variant name: ${variantName}\n"
+        configurations.${compileTaskName}.each { File file ->
+            details << """
+name: $file.name
+absolutePath: $file.absolutePath
+"""
+        }
+        details << "------------ listJar${compileTaskHint} end --------------\n"
+        println details
+    }
+
+    String providedTaskName = "provided"
+    String providedTaskHint = "Provided"
+    task("listJar${providedTaskHint}$variantName", type: Task, dependsOn: "compile${variantName}JavaWithJavac") {
+        group "list"
+        description "list ${providedTaskName} dependencies jar path"
+        StringBuffer details = new StringBuffer()
+        details << "------------ listJar${providedTaskHint} start --------------\n"
+        details << "project name: ${project.name}\n"
+        details << "variant name: ${variantName}\n"
+        configurations.${providedTaskName}.each { File file ->
+            details << """
+name: $file.name
+absolutePath: $file.absolutePath
+"""
+        }
+        details << "------------ listJar${providedTaskHint} end --------------\n"
+        println details
+    }
+}

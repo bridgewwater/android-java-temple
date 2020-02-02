@@ -1,0 +1,41 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+apply from: rootProject.file("package.gradle")
+apply from: rootProject.file("gradle/utils.gradle")
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.1"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        // for custom android repository
+//        maven { url LIB_CUSTOM_ANDROID_REPOSITORY_URL }
+
+        // for business repository
+        if (isReleaseBuild()) {
+            maven { url REPO_RELEASE_REPOSITORY_URL }
+        } else {
+            maven { url REPO_SNAPSHOT_REPOSITORY_URL }
+        }
+        // public java and android repository
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        jcenter()
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
