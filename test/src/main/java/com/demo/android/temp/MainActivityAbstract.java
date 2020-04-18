@@ -1,18 +1,18 @@
-package com.sinlov.android.demo.temp;
+package com.demo.android.temp;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.demo.temp.TemplateTestActivity;
+import com.demo.temp.AbstractTemplateTestActivity;
 import com.demo.temp.utils.ClipboardUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends TemplateTestActivity {
+public class MainActivityAbstract extends AbstractTemplateTestActivity {
 
     @BindView(R.id.btn_main_module_init_check)
     Button btnMainModuleInitCheck;

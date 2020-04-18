@@ -2,6 +2,8 @@ package com.sinlov.android.demo.temp;
 
 import android.widget.TextView;
 
+import com.demo.android.temp.MainActivityAbstract;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 /**
- * test {@link MainActivity}
+ * test {@link MainActivityAbstract}
  * <pre>
  *     sinlov
  *
@@ -33,8 +35,8 @@ import static junit.framework.Assert.assertNotNull;
  * Created by sinlov on 17/8/17.
  */
 public class MainActivityTest extends RoboTemp {
-    private MainActivity mainActivity;
-    private ActivityController<MainActivity> activityControlle;
+    private MainActivityAbstract mainActivity;
+    private ActivityController<MainActivityAbstract> activityControlle;
 
     @Override
     @Before
@@ -42,8 +44,8 @@ public class MainActivityTest extends RoboTemp {
         super.setUp();
 
         // Create new activity
-        this.mainActivity = Robolectric.setupActivity(MainActivity.class);
-        this.activityControlle = Robolectric.buildActivity(MainActivity.class).create().start().resume().visible();
+        this.mainActivity = Robolectric.setupActivity(MainActivityAbstract.class);
+        this.activityControlle = Robolectric.buildActivity(MainActivityAbstract.class).create().start().resume().visible();
     }
 
     @Override

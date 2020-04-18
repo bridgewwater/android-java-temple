@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-public abstract class TemplateTestActivity extends AppCompatActivity {
+public abstract class AbstractTemplateTestActivity extends AppCompatActivity {
 
     protected String TAG;
 
@@ -56,7 +56,7 @@ public abstract class TemplateTestActivity extends AppCompatActivity {
     }
 
     protected void skip2Activity(Class<?> cls, Bundle bundle) {
-        Intent intent = new Intent(TemplateTestActivity.this, cls);
+        Intent intent = new Intent(AbstractTemplateTestActivity.this, cls);
         if (null != bundle) {
             intent.putExtras(bundle);
         }

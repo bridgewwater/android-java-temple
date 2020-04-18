@@ -1,0 +1,1 @@
+# for java temple of android project
