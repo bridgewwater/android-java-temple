@@ -44,10 +44,12 @@ import static org.robolectric.shadows.ShadowLooper.runUiThreadTasksIncludingDela
  * Created by sinlov on 17/8/17.
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class,
+@Config(
+        constants = BuildConfig.class,
         packageName = BuildConfig.APPLICATION_ID,
         application = TestMockApplication.class,
-        sdk = Build.VERSION_CODES.M
+        sdk = Build.VERSION_CODES.M,
+        manifest = Config.NONE
 )
 public abstract class RoboTemp extends TestTemp {
 

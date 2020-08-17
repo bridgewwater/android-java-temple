@@ -1,2 +1,2 @@
 include ':test'
-//include ':plugin'
+include ':plugin'
