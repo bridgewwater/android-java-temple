@@ -23,7 +23,7 @@ pluginDebug:
 	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):buildDebug
 
 pluginRelease:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):buildRelease
+	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):build
 
 pluginAssembleDebug: pluginClean
 	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):assembleDebug
