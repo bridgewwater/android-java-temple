@@ -3,6 +3,7 @@ package com.sinlov.android.demo.temp;
 import android.widget.TextView;
 
 import com.demo.android.temp.MainActivityAbstract;
+import com.demo.android.temp.R;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,6 +11,9 @@ import org.junit.Test;
 import org.robolectric.Robolectric;
 import org.robolectric.android.controller.ActivityController;
 import org.robolectric.shadows.ShadowToast;
+
+import androidx.lifecycle.Lifecycle;
+import androidx.test.core.app.ActivityScenario;
 
 import test.RoboTemp;
 
@@ -35,17 +39,18 @@ import static junit.framework.Assert.assertNotNull;
  * Created by sinlov on 17/8/17.
  */
 public class MainActivityTest extends RoboTemp {
-    private MainActivityAbstract mainActivity;
-    private ActivityController<MainActivityAbstract> activityControlle;
+    //    private MainActivityAbstract mainActivity;
+    private ActivityController<MainActivityAbstract> activityController;
+    private ActivityScenario<MainActivityAbstract> activityScenario;
 
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
-
-        // Create new activity
-        this.mainActivity = Robolectric.setupActivity(MainActivityAbstract.class);
-        this.activityControlle = Robolectric.buildActivity(MainActivityAbstract.class).create().start().resume().visible();
+        // Create new activity http://robolectric.org/androidx_test/
+        activityScenario = ActivityScenario.launch(MainActivityAbstract.class);
+        activityScenario.moveToState(Lifecycle.State.CREATED);
+        this.activityController = Robolectric.buildActivity(MainActivityAbstract.class).create().start().resume().visible();
     }
 
     @Override
@@ -53,25 +58,34 @@ public class MainActivityTest extends RoboTemp {
     public void tearDown() throws Exception {
         super.tearDown();
         // Destroy activity
-        this.mainActivity.finish();
+        this.activityScenario.moveToState(Lifecycle.State.DESTROYED);
     }
 
     @Test
     public void testOnCreateNotNull() {
-        assertNotNull(mainActivity);
-        assertNotNull(activityControlle);
+        assertNotNull(activityScenario);
+        assertNotNull(activityController);
     }
 
     @Test
     public void testLifeCycleResume() {
-        this.activityControlle.pause().stop().destroy();
+        this.activityController.pause().stop().destroy();
     }
 
     @Test
     public void testResultClickAndToast() {
-        TextView tvResult = (TextView) this.mainActivity.findViewById(R.id.tv_main_result);
-        assertNotNull(tvResult);
-        tvResult.performClick();
-        assertEquals(ShadowToast.getTextOfLatestToast(), "Result has copy to clipboard");
+        this.activityScenario.onActivity(new ActivityScenario.ActivityAction<MainActivityAbstract>() {
+            @Override
+            public void perform(MainActivityAbstract activity) {
+                TextView tvResult = (TextView) activity.findViewById(R.id.tv_main_result);
+                assertNotNull(tvResult);
+                tvResult.performClick();
+                assertEquals(ShadowToast.getTextOfLatestToast(), "Result has copy to clipboard");
+            }
+        });
+//        TextView tvResult = (TextView) this.mainActivity.findViewById(R.id.tv_main_result);
+//        assertNotNull(tvResult);
+//        tvResult.performClick();
+//        assertEquals(ShadowToast.getTextOfLatestToast(), "Result has copy to clipboard");
     }
 }

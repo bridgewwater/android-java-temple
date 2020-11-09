@@ -5,7 +5,7 @@ import android.app.Application;
 import android.app.Dialog;
 import android.content.DialogInterface;
 
-import com.sinlov.android.develophelper.UXUtils;
+import com.demo.android.temp.UXUtils;
 
 import org.junit.Test;
 import org.powermock.core.classloader.annotations.PrepareForTest;

@@ -1,6 +1,10 @@
 .PHONY: dist test build
 
-include z-android-base.mk
+ROOT_PWD=$(shell pwd)
 
-help: helpAndroidBase
-	@echo "more task see makefile!"
+include z-android-base.mk
+include z-app.mk
+include z-module-plugin.mk
+
+help: helpAndroidBase helpplugin helpApp
+	@echo "more task see Makefile!"

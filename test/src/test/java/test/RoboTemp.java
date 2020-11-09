@@ -4,14 +4,12 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 
-import com.sinlov.android.demo.temp.BuildConfig;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
+import androidx.test.core.app.ApplicationProvider;
 
 import static org.robolectric.Robolectric.flushBackgroundThreadScheduler;
 import static org.robolectric.Robolectric.flushForegroundThreadScheduler;
@@ -34,14 +32,16 @@ import static org.robolectric.shadows.ShadowLooper.runUiThreadTasksIncludingDela
  *   \_oo__oo_/≡≡≡≡≡≡≡≡o
  *
  * </pre>
- * Created by sinlov on 17/8/17.
+ * Created by sinlov on 20/8/17.
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.M)
+@Config(manifest = Config.NONE,
+        sdk = Build.VERSION_CODES.O
+)
 public abstract class RoboTemp extends TestTemp {
     // Android Related
-    protected static final Context CTX_APP = RuntimeEnvironment.application;
-    protected static final Application APPLICATION = RuntimeEnvironment.application;
+    protected static final Context CTX_APP = ApplicationProvider.getApplicationContext();
+    protected static final Application APPLICATION = ApplicationProvider.getApplicationContext();
 
     @Override
     @Before

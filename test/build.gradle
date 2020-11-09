@@ -21,6 +21,8 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
         checkReleaseBuilds false
+        // for androidx close warning
+        disable 'GoogleAppIndexingWarning'
     }
 
     signingConfigs {
@@ -29,6 +31,12 @@ android {
             storePassword project.hasProperty('KEY_BUILD_STOREPASS') ? KEY_1_STOREPASS : 'android'
             keyAlias project.hasProperty('KEY_BUILD_KEYALIAS') ? KEY_1_KEYALIAS : 'android'
             keyPassword project.hasProperty('KEY_BUILD_KEYPASS') ? KEY_1_KEYPASS : 'android'
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
         }
     }
 
@@ -62,9 +70,11 @@ dependencies {
     testImplementation test_depends.junit,
             // Mockito
             test_depends.mockito_core,
-            // Robolectric + Support v4
+            // Robolectric
             test_depends.robolectric,
-            test_depends.robolectric_shadows_support_v4,
+            test_depends.androidx_test_core,
+            // deprecated
+//            test_depends.robolectric_shadows_support_v4,
             // EasyMock
             test_depends.easymock,
             // PowerMock
@@ -78,13 +88,13 @@ dependencies {
 
     // butter knife only for module test!
     annotationProcessor apt_compiler.butterknife_compiler
-    implementation depends.com_android_support_support_v4,
-            depends.com_android_support_appcompat_7,
-//            depends.com_android_support_recyclerview_v7,
-//            depends.com_android_support_cardview_v7,
-//            depends.com_android_support_design,
+    implementation depends_android_x.androidx_legacy_support_v4,
+            depends_android_x.androidx_appcompat,
+//            depends_android_x.androidx_recyclerview,
+//            depends_android_x.androidx_cardview,
+//            depends_android_x.com_google_android_material_material,
             depends.butterknife,
-            depends.com_android_support_support_annotations
+            depends_android_x.androidx_annotation
 
     // TODO add module
     // implementation project(':plugin')

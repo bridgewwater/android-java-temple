@@ -16,6 +16,14 @@ android {
     lintOptions {
         abortOnError false
         checkReleaseBuilds false
+        // for androidx close warning
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 
     buildTypes {
@@ -24,18 +32,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    android.libraryVariants.all { variant ->
+        def defaultName = projectDir.name
+        def buildType = variant.buildType.name
+        if (buildType == 'debug') {
+            variant.outputs.all {
+                outputFileName = hasProperty('POM_ARTIFACT_ID') ? POM_ARTIFACT_ID : defaultName + "-${buildType}-${System.currentTimeMillis()}" + '.aar'
+            }
+        } else {
+            variant.outputs.all {
+                outputFileName = hasProperty('POM_ARTIFACT_ID') ? POM_ARTIFACT_ID : defaultName + "-${defaultConfig.versionName.replace('-SNAPSHOT', '')}" + '.aar'
+            }
+        }
+    }
 }
 
 dependencies {
-    // compile fileTree(dir: 'libs', include: ['*.jar'])
+    // implementation fileTree(dir: 'libs', include: ['*.jar'])
     // test start
     // Junit
-    testCompile test_depends.junit,
+    testImplementation test_depends.junit,
             // Mockito
             test_depends.mockito_core,
-            // Robolectric + Support v4
+            // Robolectric
             test_depends.robolectric,
-            test_depends.robolectric_shadows_support_v4,
+            test_depends.androidx_test_core,
+            // deprecated
+//            test_depends.robolectric_shadows_support_v4,
             // EasyMock
             test_depends.easymock,
             // PowerMock
@@ -46,12 +70,14 @@ dependencies {
 
     //    androidTestCompile android_test_depends.robotium_solo
     // test end
-    compileOnly depends.com_android_support_support_annotations
-//    compile depends.com_android_support_support_v4,
-//            depends.com_android_support_appcompat_7
-//            depends.com_android_support_recyclerview_v7,
-//            depends.com_android_support_cardview_v7,
-//            depends.com_android_support_design
+
+    compileOnly depends_android_x.androidx_annotation
+//            depends_android_x.androidx_appcompat,
+//            depends_android_x.androidx_recyclerview,
+//            depends_android_x.androidx_cardview,
+//            depends_android_x.com_google_android_material_material,
+//            depends_android_x.androidx_legacy_support_v4
+
     // you can use compileOnly for only compile
 //    compileOnly depends.gson
     if (isReleaseBuild()) {
