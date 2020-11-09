@@ -1,4 +1,4 @@
-# for java temple of android project
+# for android temple of project write as java
 
 ## env
 
@@ -6,9 +6,13 @@
 | :------------- | :------ |
 | jdk            | 1.8+    |
 | gradle         | 6.5+    |
-| android stuido | 4.0.1+  |
+| android studio | 4.0.1+  |
+| android compile sdk | 30 |
+| android build tools | 30.0.5 |
+| android min sdk | 21 |
+| android target sdk | 26 |
 
-- libraray version
+- library version
 
 | item                           | version |
 | :----------------------------- | :------ |
