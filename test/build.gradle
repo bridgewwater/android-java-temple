@@ -86,6 +86,9 @@ dependencies {
     //    androidTestImplementation android_test_depends.robotium_solo
     // test end
 
+    // debug：https://github.com/getActivity/Logcat
+    debugImplementation 'com.hjq:logcat:9.2'
+
     // butter knife only for module test!
     annotationProcessor apt_compiler.butterknife_compiler
     implementation depends_android_x.androidx_legacy_support_v4,

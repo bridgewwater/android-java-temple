@@ -1,6 +1,7 @@
 package com.demo.android.temp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,15 +39,21 @@ public class MainActivityAbstract extends AbstractTemplateTestActivity {
     @OnClick({R.id.btn_main_module_init_check, R.id.btn_main_skip_to_module, R.id.btn_main_get_module_data, R.id.tv_main_result})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            default:
+                break;
             case R.id.btn_main_module_init_check:
+                Log.v(TAG, "onViewClicked: btn_main_skip_to_module");
                 break;
             case R.id.btn_main_skip_to_module:
+                Log.d(TAG, "onViewClicked: btn_main_skip_to_module");
                 showToast("skip_to_module");
                 break;
             case R.id.btn_main_get_module_data:
+                Log.i(TAG, "onViewClicked: btn_main_get_module_data");
                 showToast("get_module_data");
                 break;
             case R.id.tv_main_result:
+                Log.w(TAG, "onViewClicked: tv_main_result", new IllegalArgumentException("log tv_main_result"));
                 ClipboardUtils.copy2Clipboard(getBaseContext(), tvMainResult.getText().toString());
                 showToast("Result has copy to clipboard");
                 break;
