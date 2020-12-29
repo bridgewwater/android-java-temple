@@ -6,10 +6,15 @@ import android.os.Bundle;
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.hjq.toast.ToastUtils;
 
 public abstract class AbstractTemplateTestActivity extends AppCompatActivity {
 
@@ -44,11 +49,19 @@ public abstract class AbstractTemplateTestActivity extends AppCompatActivity {
     }
 
     protected void showToast(String text) {
-        Toast.makeText(this.getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(text)) {
+            text = "nil";
+        }
+
+        ToastUtils.setGravity(Gravity.BOTTOM, 0, 64);
+        ToastUtils.show(text);
+//        Toast.makeText(this.getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     protected void showToast(int id) {
-        Toast.makeText(this.getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+        ToastUtils.setGravity(Gravity.BOTTOM, 0, 64);
+        ToastUtils.show(id);
+//        Toast.makeText(this.getApplicationContext(), id, Toast.LENGTH_SHORT).show();
     }
 
     protected void skip2Activity(Class<?> cls) {

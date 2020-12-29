@@ -41,8 +41,10 @@ public class MainActivityAbstract extends AbstractTemplateTestActivity {
             case R.id.btn_main_module_init_check:
                 break;
             case R.id.btn_main_skip_to_module:
+                showToast("skip_to_module");
                 break;
             case R.id.btn_main_get_module_data:
+                showToast("get_module_data");
                 break;
             case R.id.tv_main_result:
                 ClipboardUtils.copy2Clipboard(getBaseContext(), tvMainResult.getText().toString());

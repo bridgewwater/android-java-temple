@@ -96,6 +96,7 @@ dependencies {
             depends.butterknife,
             depends_android_x.androidx_annotation
 
+    implementation 'com.hjq:toast:8.8'
     // TODO add module
     // implementation project(':plugin')
 }
