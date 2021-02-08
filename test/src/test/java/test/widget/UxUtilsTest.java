@@ -1,11 +1,11 @@
-package com.sinlov.android.demo.temp;
+package test.widget;
 
 import android.app.Activity;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.DialogInterface;
 
-import com.demo.android.temp.UXUtils;
+import com.demo.temp.widget.UXUtils;
 
 import org.junit.Test;
 import org.powermock.core.classloader.annotations.PrepareForTest;

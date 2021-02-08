@@ -1,9 +1,9 @@
-package com.sinlov.android.demo.temp;
+package com.sinlov.android.demo.template;
 
 import android.widget.TextView;
 
-import com.demo.android.temp.MainActivityAbstract;
-import com.demo.android.temp.R;
+import com.demo.android.template.MainActivityAbstract;
+import com.demo.android.template.R;
 
 import org.junit.After;
 import org.junit.Before;

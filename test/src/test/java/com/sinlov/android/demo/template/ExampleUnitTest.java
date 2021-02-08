@@ -1,4 +1,4 @@
-package com.sinlov.android.demo.temp;
+package com.sinlov.android.demo.template;
 
 import org.junit.Test;
 

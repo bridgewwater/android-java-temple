@@ -1,4 +1,4 @@
-package com.demo.android.temp;
+package com.demo.android.template;
 
 import android.app.Application;
 

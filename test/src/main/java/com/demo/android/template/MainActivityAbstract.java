@@ -1,4 +1,4 @@
-package com.demo.android.temp;
+package com.demo.android.template;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -36,7 +36,12 @@ public class MainActivityAbstract extends AbstractTemplateTestActivity {
 
     }
 
-    @OnClick({R.id.btn_main_module_init_check, R.id.btn_main_skip_to_module, R.id.btn_main_get_module_data, R.id.tv_main_result})
+    @OnClick({
+            R.id.btn_main_module_init_check,
+            R.id.btn_main_skip_to_module,
+            R.id.btn_main_get_module_data,
+            R.id.tv_main_result,
+    })
     public void onViewClicked(View view) {
         switch (view.getId()) {
             default:
