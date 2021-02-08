@@ -8,11 +8,15 @@ android {
 
     defaultConfig {
         applicationId "com.demo.android.template"
+        // Specifies the application ID for the test APK.
+//        testApplicationId "com.demo.android.template.test"
         minSdkVersion ANDROID_MIN_SDK_VERSION as int
         targetSdkVersion ANDROID_TARGET_SDK_VERSION as int
         versionCode VERSION_CODE as int
         versionName VERSION_NAME
 //        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     lintOptions {
@@ -23,6 +27,11 @@ android {
         checkReleaseBuilds false
         // for androidx close warning
         disable 'GoogleAppIndexingWarning'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     signingConfigs {
@@ -37,6 +46,11 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            // https://developer.android.com/studio/test
+            all {
+                // Sets JVM argument(s) for the test JVM(s).
+                jvmArgs '-XX:MaxPermSize=256m'
+            }
         }
     }
 
@@ -82,6 +96,9 @@ dependencies {
             test_depends.powermock_module_junit4,
             // PowerMock + EasyMock extension
             test_depends.powermock_api_easymock
+
+    androidTestImplementation android_test_depends.androidx_test_ext_junit,
+            android_test_depends.androidx_test_espresso_espresso_core
 
     //    androidTestImplementation android_test_depends.robotium_solo
     // test end
