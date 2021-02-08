@@ -3,8 +3,8 @@
 ROOT_PWD=$(shell pwd)
 
 include z-android-base.mk
-include z-app.mk
-include z-module-plugin.mk
+include test/z-application.mk
+include plugin/z-plugin.mk
 
-help: helpAndroidBase helpplugin helpApp
+help: helpAndroidBase help-plugin help-test
 	@echo "more task see Makefile!"

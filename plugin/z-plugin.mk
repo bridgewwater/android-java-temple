@@ -1,4 +1,4 @@
-
+# com.android.library
 ROOT_MODULE_plugin := plugin
 
 pluginClean:
@@ -31,8 +31,8 @@ pluginAssembleDebug: pluginClean
 pluginAssembleRelease: pluginClean
 	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):assembleRelease
 
-helpplugin:
-	@echo "=> $(ROOT_PWD)/z-module-plugin.mk : android library module [ $(ROOT_MODULE_plugin) ] task"
+help-plugin:
+	@echo "=> ${ROOT_PWD}/${ROOT_MODULE_plugin}/z-plugin.mk : android library module [ $(ROOT_MODULE_plugin) ] task"
 	@echo "make $(ROOT_MODULE_plugin)Clean                         ~> clean of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)DependImplementation          ~> see dependencies implementation of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)DependReleaseCompileClasspath ~> see dependencies implementation of module [ $(ROOT_MODULE_plugin) ]"

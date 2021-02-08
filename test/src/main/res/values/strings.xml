@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">needchange</string>
+    <string name="app_name">android-java-temple</string>
 
     <string name="toast_fast_request">Please wait…</string>
     <string name="dialog_fast_request">Please wait…</string>

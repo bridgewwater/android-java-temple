@@ -7,16 +7,21 @@ endif
 
 # init this project
 init: checkEnvAndroidHome
-	$(ROOT_PWD)/gradlew clean buildEnvironment
+	@$(ROOT_PWD)/gradlew clean buildEnvironment --warning-mode all
 
 cleanRoot:
 	$(ROOT_PWD)/gradlew clean
+
+cleanGradleBuildAndIdea:
+	$(ROOT_PWD)/gradlew clean cleanBuildCache cleanIdea
 
 adbCrash: checkEnvAndroidHome
 	adb shell dumpsys dropbox --print data_app_crash
 
 helpAndroidBase:
 	@echo "=> $(ROOT_PWD)/z-android-base.mk : android base task"
-	@echo "make init -> init this project for check base build error"
-	@echo "make adbCrash ~> show last crash info"
+	@echo "make init                    ~> init this project for check base build error"
+	@echo "make cleanRoot               ~> clean root"
+	@echo "make cleanGradleBuildAndIdea ~> clean root"
+	@echo "make adbCrash                ~> show last crash info"
 	@echo ""
