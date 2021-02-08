@@ -16,7 +16,7 @@
 
 | item                           | version |
 | :----------------------------- | :------ |
-| com.android.tools.build:gradle | 4.1.0   |
+| com.android.tools.build:gradle | 4.1.2   |
 | org.robolectric:robolectric    | 4.4     |
 | androidx.annotation:annotation | 1.0.0   |
 | androidx.multidex:multidex     | 2.0.0   |
