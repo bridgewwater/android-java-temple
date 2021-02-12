@@ -1,6 +1,8 @@
-# android-java-temple 
+# android-java-temple
 
 for android temple of project write as java
+
+repo: [https://github.com/bridgewwater/android-java-temple](https://github.com/bridgewwater/android-java-temple)
 
 ## env
 
