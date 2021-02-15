@@ -1,4 +1,4 @@
-package com.demo.temp.widget;
+package com.sinlov.temp.android.utils.widget;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,8 +10,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.demo.android.template.R;
-import com.demo.temp.utils.UXUtilsAdapter;
+
+import com.sinlov.android.demo.template.R;
+import com.sinlov.temp.android.utils.UXUtilsAdapter;
 
 public final class UXUtils {
     /**

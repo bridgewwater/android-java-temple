@@ -1,12 +1,12 @@
-package com.demo.android.template;
+package com.sinlov.android.demo.template;
 
 import android.app.Application;
 
 import com.hjq.toast.ToastUtils;
 
-/**
- * @author sinlov
- */
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
 public class MineApplication extends Application {
 
     @Override

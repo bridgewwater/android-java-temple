@@ -47,9 +47,9 @@ android {
                 outputFileName = hasProperty('POM_ARTIFACT_ID') ? POM_ARTIFACT_ID : defaultName + "-${buildType}-${System.currentTimeMillis()}" + '.aar'
             }
         } else {
-            variant.outputs.all {
-                outputFileName = hasProperty('POM_ARTIFACT_ID') ? POM_ARTIFACT_ID : defaultName + "-${defaultConfig.versionName.replace('-SNAPSHOT', '')}" + '.aar'
-            }
+//            variant.outputs.all {
+//                outputFileName = hasProperty('POM_ARTIFACT_ID') ? POM_ARTIFACT_ID : defaultName + "-${defaultConfig.versionName.replace('-SNAPSHOT', '')}" + '.aar'
+//            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.demo.temp.utils;
+package com.sinlov.temp.android.utils;
 
 import android.content.ClipboardManager;
 import android.content.Context;

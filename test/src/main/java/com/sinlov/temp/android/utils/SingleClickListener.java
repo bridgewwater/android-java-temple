@@ -1,4 +1,4 @@
-package com.demo.temp.utils;
+package com.sinlov.temp.android.utils;
 
 import android.view.View;
 import android.view.View.OnClickListener;

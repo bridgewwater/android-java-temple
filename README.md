@@ -24,3 +24,5 @@ repo: [https://github.com/bridgewwater/android-java-temple](https://github.com/b
 | org.robolectric:robolectric    | 4.4     |
 | androidx.annotation:annotation | 1.0.0   |
 | androidx.multidex:multidex     | 2.0.0   |
+| com.google.dagger:dagger       | 2.3.2   |
+| com.google.dagger:hilt-android | 2.32-alpha   |

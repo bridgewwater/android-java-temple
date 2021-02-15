@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:orientation="horizontal"
+        android:rowCount="6">
+
+        <Button
+            android:id="@+id/btn_init_check"
+            style="@style/Sinlov.Button.Menu"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill"
+            android:text="module init check" />
+
+        <Button
+            android:id="@+id/btn_skip_to_module"
+            style="@style/Sinlov.Button.Menu"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill"
+            android:text="Skip to module" />
+
+        <Button
+            android:id="@+id/btn_get_module_data"
+            style="@style/Sinlov.Button.Menu"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill"
+            android:text="get module data" />
+
+        <Button
+            android:id="@+id/btn_test_module_data"
+            style="@style/Sinlov.Button.Menu"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill"
+            android:text="test module data" />
+    </GridLayout>
+
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Test result will show at this"
+        android:textIsSelectable="true" />
+
+</LinearLayout>

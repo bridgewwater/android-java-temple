@@ -1,8 +1,9 @@
-package com.demo.temp;
+package com.sinlov.temp.android;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.hjq.toast.ToastUtils;
 
@@ -28,15 +28,29 @@ public abstract class AbstractTemplateTestActivity extends AppCompatActivity {
         TAG = this.getClass().getSimpleName().replace("Activity", "");
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        processLogic(savedInstanceState);
+        onProcessLogic(savedInstanceState);
+        setContentView(onSetContentView());
+        onCreateBindView();
     }
 
     /**
-     * process logic and resumes states etc.
+     * process logic and resumes states by savedInstanceState.
      *
      * @param savedInstanceState {@link Bundle}
      */
-    protected abstract void processLogic(Bundle savedInstanceState);
+    protected abstract void onProcessLogic(Bundle savedInstanceState);
+
+    /**
+     * for onCreate setContentView()
+     *
+     * @return view
+     */
+    protected abstract View onSetContentView();
+
+    /**
+     * after setContentView can bind view
+     */
+    protected abstract void onCreateBindView();
 
     /**
      * @param id   widget id
