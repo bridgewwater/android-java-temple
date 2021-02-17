@@ -35,7 +35,8 @@ public class JsonConfigByAssetsTests extends RoboTemp {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        testJson = AssetsFileUtils.readJson(app, new File("json", "test.json").toString());
+//        testJson = AssetsFileUtils.readJson(app, new File("json", "test.json").toString());
+        testJson = AssetsFileUtils.readJson(app, "json/test.json");
     }
 
     @Test
