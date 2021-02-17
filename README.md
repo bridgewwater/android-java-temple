@@ -26,3 +26,10 @@ repo: [https://github.com/bridgewwater/android-java-temple](https://github.com/b
 | androidx.multidex:multidex     | 2.0.0   |
 | com.google.dagger:dagger       | 2.3.2   |
 | com.google.dagger:hilt-android | 2.32-alpha   |
+
+
+## warning
+
+application use [view binding](https://developer.android.com/topic/libraries/view-binding)
+
+if can not found databinding class, just use `File -> Invalidate Caches / Just Restart` 
