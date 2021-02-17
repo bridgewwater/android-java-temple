@@ -114,6 +114,37 @@ String getGroupSet() {
     }
 }
 
+String getUserOrgSet() {
+    if (hasProperty('USER_ORG')) {
+        return USER_ORG
+    } else {
+        printErrorGradlePropertiesNotSet('USER_ORG')
+        return ""
+    }
+}
+
+String getPomArtifactId() {
+    if (hasProperty('POM_ARTIFACT_ID')) {
+        return POM_ARTIFACT_ID
+    } else {
+        printErrorGradlePropertiesNotSet('POM_ARTIFACT_ID')
+        return ""
+    }
+}
+
+String getPomName() {
+    if (hasProperty('POM_NAME')) {
+        return POM_NAME
+    } else {
+        printErrorGradlePropertiesNotSet('POM_NAME')
+        return ""
+    }
+}
+
+String getPomDescription() {
+    return hasProperty('POM_DESCRIPTION') ? POM_DESCRIPTION : "default_pom_description"
+}
+
 String getProjectRootName() {
     if (hasProperty('PROJECT_ROOT_NAME')) {
         return PROJECT_ROOT_NAME
@@ -204,6 +235,10 @@ ext {
     getVersionName = this.&getVersionName
     getVersionCode = this.&getVersionCode
     getGroupSet = this.&getGroupSet
+    getUserOrgSet = this.&getUserOrgSet
+    getPomArtifactId = this.&getPomArtifactId
+    getPomName = this.&getPomName
+    getPomDescription = this.&getPomDescription
     getProjectRootName = this.&getProjectRootName
     projectFatherPath = this.&projectFatherPath
     printAllTaskInOut = this.&printAllTaskInOut

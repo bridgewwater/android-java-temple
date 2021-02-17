@@ -5,6 +5,18 @@ package com.sinlov.android.plugin;
  */
 public final class Plugin {
 
+    /**
+     * do biz
+     */
+    public void biz() {
+
+    }
+
+    /**
+     * plugin instance
+     *
+     * @return {@link Plugin}
+     */
     public static Plugin getInstance() {
         return Instance.instance;
     }

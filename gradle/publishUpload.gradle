@@ -5,9 +5,13 @@
  *     task clean(type: Delete) {*          checkNexusModuleConfig()
  *          delete project.buildDir
  *}* </pre>
+ * https://docs.gradle.org/6.5/userguide/upgrading_version_5.html#legacy_publication_system_is_deprecated_and_replaced_with_the_publish_plugins
+ * Gradle 4.8 use maven-publish
+ *
  */
 
-apply plugin: 'maven'
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 def checkNexusModuleConfig() {
@@ -198,123 +202,78 @@ String getPomDescription() {
     return hasProperty('POM_DESCRIPTION') ? POM_DESCRIPTION : "default_pom_description"
 }
 
-signing {
-    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
-afterEvaluate { project ->
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                pom.groupId = this.getGroupSet()
-                pom.artifactId = this.getPomArtifactId()
-                pom.version = this.getVersionName()
-                repository(url: this.getReleaseRepositoryUrl()) {
-                    authentication(userName: this.getRepositoryUsername(), password: this.getRepositoryPassword())
-                }
-                snapshotRepository(url: this.getSnapshotRepositoryUrl()) {
-                    authentication(userName: this.getRepositoryUsername(), password: this.getRepositoryPassword())
-                }
-                pom.project {
-                    name this.getPomName()
-                    groupId this.getGroupSet()
-                    artifactId this.getPomArtifactId()
-                    version this.getVersionName()
-                    packaging this.getPomPackaging()
-                    description this.getPomDescription()
+group = this.getGroupSet()
+version = this.getVersionName()
 
-                    developers {
-                        developer {
-                            id this.getPomDeveloperId()
-                            name this.getPomDeveloperName()
-                        }
-                    }
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = this.getGroupSet()
+            artifactId = this.getPomArtifactId()
+            version = this.getVersionName()
 
-                    licenses {
-                        license {
-                            name this.getPomLicenceName()
-                            url this.getPomLicenceUrl()
-                            distribution this.getPomLicenceDist()
-                        }
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = this.getPomName()
+                description = this.getPomDescription()
+                developers {
+                    developer {
+                        id this.getPomDeveloperId()
+                        name this.getPomDeveloperName()
+//                        email = ''
                     }
                 }
+
+                licenses {
+                    license {
+                        name this.getPomLicenceName()
+                        url this.getPomLicenceUrl()
+//                        distribution this.getPomLicenceDist()
+                    }
+                }
+//                scm {
+//                    connection = 'scm:git:git://example.com/my-library.git'
+//                    developerConnection = 'scm:git:ssh://example.com/my-library.git'
+//                    url = 'http://example.com/my-library/'
+//                }
             }
         }
     }
-
-    task androidJavadocs(type: Javadoc) {
-        options {
-            encoding "UTF-8"
-            links "http://docs.oracle.com/javase/7/docs/api/"
-            linksOffline "http://d.android.com/reference", "${android.sdkDirectory}/docs/reference"
-        }
-        exclude '**/BuildConfig.java'
-        exclude '**/R.java'
-    }
-    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-        classifier = 'javadoc'
-//        archiveClassifier = 'javadoc'
-        from androidJavadocs.destinationDir
-    }
-
-    task androidSourcesJar(type: Jar) {
-        classifier = 'sources'
-//        archiveClassifier = 'sources'
-        from android.sourceSets.main.java.sourceFiles
-    }
-
-    task makeReleaseJar(type: Jar, dependsOn: "bundleRelease") {
-        from file('build/intermediates/classes/release')
-        archiveFileName = "${project.name}.jar"
-        destinationDirectory = file('build/libs')
-
-        //exclude class
-        exclude "**/**/BuildConfig.class"
-        exclude "**/**/BuildConfig\$*.class"
-        exclude "**/R.class"
-        exclude "**/R\$*.class"
-
-        //include class
-//        include "com/test/**/*.class"
-    }
-
-    task androidrReleaseEclipse(type: Copy) {
-        from('build/intermediates/bundles/release/')
-        exclude 'build/intermediates/bundles/release/aapt'
-        into('build/eclipse/')
-        include('classes.jar')
-        include('res/')
-        include('jni/')
-        include('libs/')
-        include('aidl/')
-        include('assets/')
-        include('R.txt')
-        rename('classes.jar', "${project.name}-release.jar")
-    }
-
-    task androidReleaseEclipseZip(type: Zip, dependsOn: androidrReleaseEclipse) {
-        classifier = 'eclipse'
-        from "${project.buildDir}/eclipse/"
-    }
-
-    artifacts {
-        checkNexusModuleConfig()
-        archives androidSourcesJar
-        archives androidJavadocsJar
-//        archives androidReleaseEclipseZip
-        if (getPomPackaging().equals('jar')) {
-            archives makeReleaseJar
-            "${project.buildDir}/outputs/aar/${project.name}-release.aar"
-        } else if (getPomPackaging().equals('eclipse')) {
-            archives makeReleaseJar
-            archives androidReleaseEclipseZip
-            "${project.buildDir}/outputs/aar/${project.name}-release.aar"
-        } else {
-            "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+    repositories {
+        maven {
+            url = this.getVersionName().endsWith('SNAPSHOT') ? this.getSnapshotRepositoryUrl() : this.getReleaseRepositoryUrl()
+            credentials {
+                username = this.getRepositoryUsername()
+                password = this.getRepositoryPassword()
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
         }
     }
+}
 
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if (JavaVersion.current().isJava8Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
 }
 
 ext {
