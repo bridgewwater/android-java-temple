@@ -16,8 +16,6 @@ def checkNexusModuleConfig() {
     String groupSet = getGroupSet()
     String pomArtifactId = getPomArtifactId()
     String pomName = getPomName()
-    String repositoryUsername = getRepositoryUsername()
-    String repositoryPassword = getRepositoryPassword()
     String releaseRepositoryUrl = getReleaseRepositoryUrl()
     String snapshotRepositoryUrl = getSnapshotRepositoryUrl()
     String pomPackaging = getPomPackaging()
@@ -29,8 +27,7 @@ def checkNexusModuleConfig() {
     String pomDescription = getPomDescription()
     if (
     isStringEmpty(versionName) || versionCode == 0 || isStringEmpty(groupSet) ||
-            isStringEmpty(pomArtifactId) || isStringEmpty(pomName) ||
-            isStringEmpty(repositoryUsername) || isStringEmpty(repositoryPassword)
+            isStringEmpty(pomArtifactId) || isStringEmpty(pomName)
     ) {
         throw new IllegalArgumentException("checkNexusModuleConfig error, please check log!")
     } else {
@@ -48,8 +45,10 @@ def checkNexusModuleConfig() {
         sb.append(pomArtifactId)
         sb.append("\n\t pomName: ")
         sb.append(pomName)
-        sb.append("\n\t nexus_username: ")
-        sb.append(repositoryUsername)
+        if (!isStringEmpty(getRepositoryUsername())){
+            sb.append("\n\t nexusName: ")
+            sb.append(getRepositoryUsername())
+        }
         if (isReleaseBuild()) {
             sb.append("\n\t buildType: release")
             sb.append("\n\t releaseRepositoryUrl: ")
@@ -144,34 +143,66 @@ String getPomName() {
     }
 }
 
+String getPomURL() {
+    if (hasProperty('POM_URL')) {
+        return POM_URL
+    } else {
+        printErrorGradlePropertiesNotSet('POM_URL')
+        return ""
+    }
+}
+
+String getSCMURL() {
+    if (hasProperty('POM_SCM_URL')) {
+        return POM_SCM_URL
+    } else {
+        printErrorGradlePropertiesNotSet('POM_SCM_URL')
+        return ""
+    }
+}
+
+String getPomSCMConnection() {
+    if (hasProperty('POM_SCM_CONNECTION')) {
+        return POM_SCM_CONNECTION
+    } else {
+        printErrorGradlePropertiesNotSet('POM_SCM_CONNECTION')
+        return ""
+    }
+}
+
+String getPomSCMDevConnection() {
+    if (hasProperty('POM_SCM_DEV_CONNECTION')) {
+        return POM_SCM_DEV_CONNECTION
+    } else {
+        printErrorGradlePropertiesNotSet('POM_SCM_DEV_CONNECTION')
+        return ""
+    }
+}
+
 String getPomPackaging() {
     return hasProperty('POM_PACKAGING') ? POM_PACKAGING : "aar"
 }
 
 String getReleaseRepositoryUrl() {
-    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : "file://${project.rootDir}/mvn-repo/release"
+    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : "https://oss.sonatype.org/service/local/staging/deploy/maven2"
 }
 
 String getSnapshotRepositoryUrl() {
-    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : "file://${project.rootDir}/mvn-repo/snapshots/"
+    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : "https://oss.sonatype.org/content/repositories/snapshots"
 }
 
 String getRepositoryUsername() {
-    if (hasProperty('NEXUS_USERNAME')) {
-        return NEXUS_USERNAME
-    } else {
-        printErrorGradlePropertiesNotSet('NEXUS_USERNAME')
-        return ""
-    }
+    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+    // if (hasProperty('NEXUS_USERNAME')) {
+    //     return NEXUS_USERNAME
+    // } else {
+    //     printErrorGradlePropertiesNotSet('NEXUS_USERNAME')
+    //     return ""
+    // }
 }
 
 String getRepositoryPassword() {
-    if (hasProperty('NEXUS_PASSWORD')) {
-        return NEXUS_PASSWORD
-    } else {
-        printErrorGradlePropertiesNotSet('NEXUS_PASSWORD')
-        return ""
-    }
+    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
 }
 
 String getPomDeveloperId() {
@@ -200,6 +231,7 @@ String getPomDescription() {
 
 signing {
     required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+    println 'Signing archives...'
     sign configurations.archives
 }
 
@@ -207,6 +239,9 @@ afterEvaluate { project ->
     uploadArchives {
         repositories {
             mavenDeployer {
+//                beforeDeployment { MavenDeployment deployment ->
+//                    signing.signPom(deployment)
+//                }
                 pom.groupId = this.getGroupSet()
                 pom.artifactId = this.getPomArtifactId()
                 pom.version = this.getVersionName()
@@ -223,6 +258,13 @@ afterEvaluate { project ->
                     version this.getVersionName()
                     packaging this.getPomPackaging()
                     description this.getPomDescription()
+                    url this.getPomURL()
+
+                    scm {
+                        url this.getPomURL()
+                        connection this.getPomSCMConnection()
+                        developerConnection this.getPomSCMDevConnection()
+                    }
 
                     developers {
                         developer {
