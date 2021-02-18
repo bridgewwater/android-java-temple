@@ -38,7 +38,7 @@ allprojects {
         // public java and android repository
 //        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
-        jcenter()
+        // jcenter()
         google()
     }
 
