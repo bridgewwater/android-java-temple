@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.sinlov.android.plugin.Plugin;
 import com.sinlov.android.plugin.demo.databinding.ActivityMainBinding;
 import com.sinlov.android.plugin.demo.databinding.MainProfileBinding;
 import com.sinlov.temp.android.AbstractTemplateTestActivity;
