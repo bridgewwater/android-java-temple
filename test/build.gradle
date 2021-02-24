@@ -118,8 +118,7 @@ dependencies {
     //    androidTestImplementation android_test_depends.robotium_solo
     // test end
 
-    // debug：https://github.com/getActivity/Logcat
-    debugImplementation 'com.hjq:logcat:9.2'
+    debugImplementation depends_debug.com_hjq_logcat // logcat window https://github.com/getActivity/Logcat
 
     // butter knife only for module test!
 //    implementation depends.butterknife
@@ -130,6 +129,9 @@ dependencies {
     implementation dagger_depends.com_google_dagger_hilt_android
     annotationProcessor dagger_depends.com_google_dagger_hilt_android_compiler
 
+    // implementation base
+    implementation depends.com_hjq_toast
+    implementation depends.com_hjq_xxpermissions
     implementation depends_android_x.androidx_legacy_support_v4,
             depends_android_x.androidx_appcompat,
 //            depends_android_x.androidx_recyclerview,
@@ -137,7 +139,6 @@ dependencies {
 //            depends_android_x.com_google_android_material_material,
             depends_android_x.androidx_annotation
 
-    implementation 'com.hjq:toast:8.8'
     // TODO load module
     // implementation project(':plugin')
 }

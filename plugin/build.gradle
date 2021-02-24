@@ -84,6 +84,9 @@ dependencies {
 //            depends_android_x.com_google_android_material_material,
 //            depends_android_x.androidx_legacy_support_v4
 
+//    api depends_android_x.com_google_android_material_material,
+//            depends_android_x.androidx_appcompat
+
     // you can use compileOnly for only compile
 //    compileOnly depends.gson
     if (isReleaseBuild()) {

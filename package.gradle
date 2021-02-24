@@ -8,54 +8,63 @@ subprojects {
         dagger_hilt_version = "2.32-alpha"
 
         dagger_depends = [
+                // https://mvnrepository.com/artifact/com.google.dagger/dagger
                 com_google_dagger_dagger                : "com.google.dagger:dagger:${dagger_version}",
                 com_google_dagger_dagger_android        : "com.google.dagger:dagger-android:${dagger_version}",
                 com_google_dagger_dagger_android_support: "com.google.dagger:dagger-android-support:${dagger_version}",
                 com_google_dagger_dagger_compiler       : "com.google.dagger:dagger-compiler:${dagger_version}",
+                // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
                 com_google_dagger_hilt_android          : "com.google.dagger:hilt-android:${dagger_hilt_version}",
                 com_google_dagger_hilt_android_compiler : "com.google.dagger:hilt-android-compiler:${dagger_hilt_version}",
         ]
 
         depends = [
-                okhttp3                    : 'com.squareup.okhttp3:okhttp:3.8.1',
-                retrofit2                  : 'com.squareup.retrofit2:retrofit:2.2.0',
-                okhttp3_logging_interceptor: 'com.squareup.okhttp3:logging-interceptor:3.8.0',
-                gson                       : 'com.google.code.gson:gson:2.8.0',
-                retrofit2_converter_gson   : 'com.squareup.retrofit2:converter-gson:2.2.0',
-                fastjson                   : 'com.alibaba:fastjson:1.2.9',
-                jetbrains_annotations      : 'org.jetbrains:annotations:15.0',
-                turbodex                   : 'com.github.asLody:turbodex:1.1.0',
-                butterknife                : 'com.jakewharton:butterknife:10.2.3',
+                com_jakewharton_timber_timber: 'com.jakewharton.timber:timber:4.7.1', // https://github.com/JakeWharton/timber
+                okhttp3                      : 'com.squareup.okhttp3:okhttp:3.8.1',
+                retrofit2                    : 'com.squareup.retrofit2:retrofit:2.2.0',
+                okhttp3_logging_interceptor  : 'com.squareup.okhttp3:logging-interceptor:3.8.0',
+                gson                         : 'com.google.code.gson:gson:2.8.6',
+                retrofit2_converter_gson     : 'com.squareup.retrofit2:converter-gson:2.2.0',
+                jetbrains_annotations        : 'org.jetbrains:annotations:15.0',
+                turbodex                     : 'com.github.asLody:turbodex:1.1.0',
+                butterknife                  : 'com.jakewharton:butterknife:10.2.3',
+                com_hjq_xxpermissions        : 'com.hjq:xxpermissions:9.8', // https://github.com/getActivity/XXPermissions
+                com_hjq_toast                : 'com.hjq:toast:8.8', // https://github.com/getActivity/ToastUtils
+        ]
+
+        depends_debug = [
+                com_squareup_leakcanary_leakcanary_android: 'com.squareup.leakcanary:leakcanary-android:2.5', // https://github.com/square/leakcanary
+                com_hjq_logcat                            : 'com.hjq:logcat:9.2', // https://github.com/getActivity/Logcat
         ]
 
         depends_android_x = [
-                // com.android.support:support-annotations
-                androidx_annotation                       : 'androidx.annotation:annotation:1.0.0',
-                // com.android.support:multidex
-                androidx_multidex                         : 'androidx.multidex:multidex:2.0.0',
-                // com.android.support:multidex-instrumentation
+                // com.android.support:support-annotations https://mvnrepository.com/artifact/androidx.annotation/annotation
+                androidx_annotation                       : 'androidx.annotation:annotation:1.1.0',
+                // com.android.support:multidex           https://mvnrepository.com/artifact/androidx.multidex/multidex
+                androidx_multidex                         : 'androidx.multidex:multidex:2.0.1',
+                // com.android.support:multidex-instrumentation https://mvnrepository.com/artifact/androidx.multidex/multidex-instrumentation
                 androidx_multidex_instrumentation         : 'androidx.multidex:multidex-instrumentation:2.0.0',
-                // com.android.support.constraint:constraint-layout
+                // com.android.support.constraint:constraint-layout  https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
                 androidx_constraintlayout_constraintlayout: 'androidx.constraintlayout:constraintlayout:2.0.4',
-                // com.android.support:support-v4
+                // com.android.support:appcompat-v7       https://mvnrepository.com/artifact/androidx.appcompat/appcompat
+                androidx_appcompat                        : 'androidx.appcompat:appcompat:1.2.0',
+                // com.android.support:recyclerview-v7    https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
+                androidx_recyclerview                     : 'androidx.recyclerview:recyclerview:1.1.0',
+                // com.android.support:support-v4         https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
                 androidx_legacy_support_v4                : 'androidx.legacy:legacy-support-v4:1.0.0',
-                // com.android.support:appcompat-v7
-                androidx_appcompat                        : 'androidx.appcompat:appcompat:1.0.0',
-                // com.android.support:recyclerview-v7
-                androidx_recyclerview                     : 'androidx.recyclerview:recyclerview:1.0.0',
-                // com.android.support:support-core-ui
+                // com.android.support:support-core-ui    https://mvnrepository.com/artifact/androidx.legacy/legacy-support-core-ui
                 androidx_legacy_support_core_ui           : 'androidx.legacy:legacy-support-core-ui:1.0.0',
-                // com.android.support:support-core-utils
+                // com.android.support:support-core-utils https://mvnrepository.com/artifact/androidx.legacy/legacy-support-core-utils
                 androidx_legacy_support_core_utils        : 'androidx.legacy:legacy-support-core-utils:1.0.0',
-                // com.android.support:cardview-v7
+                // com.android.support:cardview-v7        https://mvnrepository.com/artifact/androidx.cardview/cardview
                 androidx_cardview                         : 'androidx.cardview:cardview:1.0.0',
-                // android.arch.lifecycle:common
-                androidx_lifecycle_common                 : 'androidx.lifecycle:lifecycle-common:2.0.0',
-                // android.arch.lifecycle:runtime
+                // android.arch.lifecycle:common          https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common
+                androidx_lifecycle_common                 : 'androidx.lifecycle:lifecycle-common:2.2.0',
+                // android.arch.lifecycle:runtime         https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime
                 androidx_lifecycle_lifecycle_runtime      : 'androidx.lifecycle:lifecycle-runtime:2.2.0',
-                // android.arch.lifecycle:extensions
+                // android.arch.lifecycle:extensions      https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-extensions
                 androidx_lifecycle_lifecycle_extensions   : 'androidx.lifecycle:lifecycle-extensions:2.2.0',
-                // com.android.support:design
+                // com.android.support:design             https://mvnrepository.com/artifact/com.google.android.material/material
                 com_google_android_material_material      : 'com.google.android.material:material:1.2.1',
         ]
 
