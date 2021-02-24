@@ -140,6 +140,6 @@ dependencies {
             depends_android_x.androidx_annotation
 
     // TODO load module
-     implementation project(':plugin')
+//     implementation project(':plugin')
 }
 
