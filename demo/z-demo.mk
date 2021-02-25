@@ -29,7 +29,7 @@ demoInstallDebug:
 	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):installDebug
 
 help-demo:
-	@echo "=> ${ROOT_PWD}/${ROOT_APP_NAME_demo}/z-application.mk : android application module [ ${ROOT_APP_NAME_demo} ] task"
+	@echo "=> ${ROOT_PWD}/${ROOT_APP_NAME_demo}/z-demo.mk : android application module [ ${ROOT_APP_NAME_demo} ] task"
 	@echo "make ${ROOT_APP_NAME_demo}Clean                         ~> clean of module [ ${ROOT_APP_NAME_demo} ]"
 	@echo "make ${ROOT_APP_NAME_demo}DependImplementation          ~> see dependencies implementation of module [ ${ROOT_APP_NAME_demo} ]"
 	@echo "make ${ROOT_APP_NAME_demo}DependReleaseCompileClasspath ~> see dependencies implementation of module [ ${ROOT_APP_NAME_demo} ]"

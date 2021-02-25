@@ -3,7 +3,7 @@
 ROOT_PWD=$(shell pwd)
 
 include z-android-base.mk
-include demo/z-application.mk
+include demo/z-demo.mk
 include plugin/z-plugin.mk
 
 help: helpAndroidBase help-plugin help-demo
