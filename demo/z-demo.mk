@@ -16,13 +16,13 @@ demoTest:
 demoDebug:
 	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):buildDebug
 
-demoRelease: demoClean
+demoRelease:
 	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):buildRelease
 
 demoAssembleDebug:
 	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):assembleDebug
 
-demoAssembleRelease: demoClean
+demoAssembleRelease: demoRelease
 	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):assembleRelease
 
 demoInstallDebug:
