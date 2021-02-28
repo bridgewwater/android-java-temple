@@ -184,15 +184,28 @@ String getPomPackaging() {
 }
 
 String getReleaseRepositoryUrl() {
-    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+    if (!isStringEmpty(System.getenv('RELEASE_REPOSITORY_URL'))){
+        return System.getenv('RELEASE_REPOSITORY_URL')
+    } else {
+        return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+    }
+
 }
 
 String getSnapshotRepositoryUrl() {
-    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : "https://oss.sonatype.org/content/repositories/snapshots"
+    if (!isStringEmpty(System.getenv('SNAPSHOT_REPOSITORY_URL'))){
+        return System.getenv('SNAPSHOT_REPOSITORY_URL')
+    } else {
+        return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : "https://oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 
 String getRepositoryUsername() {
-    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+    if (!isStringEmpty(System.getenv('NEXUS_USERNAME'))){
+        return System.getenv('NEXUS_USERNAME')
+    } else {
+        return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+    }
     // if (hasProperty('NEXUS_USERNAME')) {
     //     return NEXUS_USERNAME
     // } else {
@@ -202,7 +215,11 @@ String getRepositoryUsername() {
 }
 
 String getRepositoryPassword() {
-    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+    if (!isStringEmpty(System.getenv('NEXUS_PASSWORD'))){
+        return System.getenv('NEXUS_PASSWORD')
+    } else {
+        return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+    }
 }
 
 String getPomDeveloperId() {

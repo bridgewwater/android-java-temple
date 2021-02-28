@@ -67,9 +67,11 @@ POM_DESCRIPTION=
 |ANDROID_BUILD_TOOLS_VERSION|build tools version|version of build tools|
 |ANDROID_MIN_SDK_VERSION|min sdk version|version of this module support|
 |ANDROID_TARGET_SDK_VERSION|target sdk version|version of target|
+|SNAPSHOT_REPOSITORY_URL|snapshot repository| Nexus user can Override by env `SNAPSHOT_REPOSITORY_URL` default is mavenCenter snapshot |
+|RELEASE_REPOSITORY_URL|release repository| Nexus user can Override by env `RELEASE_REPOSITORY_URL` default is mavenCenter release |
 |GROUP|group ID|like package name com.game.package|
-|NEXUS_USERNAME|nexus username|Nexus user|
-|NEXUS_PASSWORD|nexus password|Nexus password|
+|NEXUS_USERNAME|nexus username|Nexus user can Override by env `NEXUS_USERNAME` |
+|NEXUS_PASSWORD|nexus password|Nexus password can Override by env `NEXUS_PASSWORD`|
 |SNAPSHOT_REPOSITORY_URL|snapshot repo|for develop|
 |RELEASE_REPOSITORY_URL|release repo|for release|
 |POM_DEVELOPER_ID|develop id|id of developer|
