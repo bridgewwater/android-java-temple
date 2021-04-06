@@ -4,15 +4,13 @@ import android.app.Application;
 
 import com.hjq.toast.ToastUtils;
 
-import dagger.hilt.android.HiltAndroidApp;
 
-@HiltAndroidApp
 public class MineApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        initSDK();
+        initSDK(this);
     }
 
     @Override
@@ -25,7 +23,7 @@ public class MineApplication extends Application {
         super.onTerminate();
     }
 
-    private void initSDK() {
-        ToastUtils.init(this);
+    private void initSDK(Application application) {
+        ToastUtils.init(application);
     }
 }

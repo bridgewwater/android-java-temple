@@ -33,11 +33,11 @@
             android:text="get module data" />
 
         <Button
-            android:id="@+id/btn_test_module_data"
+            android:id="@+id/btn_grant_permission"
             style="@style/Sinlov.Button.Menu"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:text="test module data" />
+            android:text="grant permission" />
     </GridLayout>
 
 

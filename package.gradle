@@ -19,17 +19,53 @@ subprojects {
         ]
 
         depends = [
-                com_jakewharton_timber_timber: 'com.jakewharton.timber:timber:4.7.1', // https://github.com/JakeWharton/timber
-                okhttp3                      : 'com.squareup.okhttp3:okhttp:3.8.1',
-                retrofit2                    : 'com.squareup.retrofit2:retrofit:2.2.0',
-                okhttp3_logging_interceptor  : 'com.squareup.okhttp3:logging-interceptor:3.8.0',
-                gson                         : 'com.google.code.gson:gson:2.8.6',
-                retrofit2_converter_gson     : 'com.squareup.retrofit2:converter-gson:2.2.0',
-                jetbrains_annotations        : 'org.jetbrains:annotations:15.0',
-                turbodex                     : 'com.github.asLody:turbodex:1.1.0',
-                butterknife                  : 'com.jakewharton:butterknife:10.2.3',
-                com_hjq_xxpermissions        : 'com.hjq:xxpermissions:9.8', // https://github.com/getActivity/XXPermissions
-                com_hjq_toast                : 'com.hjq:toast:8.8', // https://github.com/getActivity/ToastUtils
+                // Bugly 异常捕捉：https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20190418140644
+                com_tencent_bugly_crashreport                : 'com.tencent.bugly:crashreport:3.3.3',
+                com_tencent_bugly_nativecrashreport          : 'com.tencent.bugly:nativecrashreport:3.7.700',
+                com_jakewharton_timber_timber                : 'com.jakewharton.timber:timber:4.7.1', // 日志 https://github.com/JakeWharton/timber
+                gson                                         : 'com.google.code.gson:gson:2.8.6',
+                retrofit2_converter_gson                     : 'com.squareup.retrofit2:converter-gson:2.2.0',
+                jetbrains_annotations                        : 'org.jetbrains:annotations:15.0',
+                turbodex                                     : 'com.github.asLody:turbodex:1.1.0',
+                com_google_zxing_core                        : 'com.google.zxing:core:3.3.0',
+                com_journeyapps_zxing_android_embedded       : 'com.journeyapps:zxing-android-embedded:4.2.0', // https://github.com/journeyapps/zxing-android-embedded
+                org_greenrobot_eventbus                      : 'org.greenrobot:eventbus:3.2.0', // https://github.com/greenrobot/EventBus
+                butterknife                                  : 'com.jakewharton:butterknife:10.2.3',
+                com_squareup_okhttp3_okhttp                  : 'com.squareup.okhttp3:okhttp:3.12.12',
+                com_squareup_okhttp3_logging_interceptor     : 'com.squareup.okhttp3:logging-interceptor:3.8.0',
+                com_squareup_retrofit2_retrofit              : 'com.squareup.retrofit2:retrofit:2.4.0',
+                com_squareup_retrofit2_retrofit_converters   : 'com.squareup.retrofit2:retrofit-converters:2.4.0',
+                com_squareup_retrofit2_retrofit_adapters     : 'com.squareup.retrofit2:retrofit-adapters:2.4.0',
+                com_squareup_retrofit2_converter_gson        : 'com.squareup.retrofit2:converter-gson:2.4.0',
+                com_github_bumptech_glide_glide              : 'com.github.bumptech.glide:glide:4.12.0', // https://github.com/bumptech/glide doc at https://muyangmin.github.io/glide-docs-cn/
+                // https://mvnrepository.com/artifact/com.github.bumptech.glide/okhttp3-integration
+                com_github_bumptech_glide_okhttp3_integration: 'com.github.bumptech.glide:okhttp3-integration:4.12.0',
+                // doc https://github.com/Baseflow/PhotoView#usage https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
+                com_github_chrisbanes_photo_view             : 'com.github.chrisbanes:PhotoView:2.3.0',
+                org_aspectj_aspectjrt                        : 'org.aspectj:aspectjrt:1.9.6', // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+                com_gyf_immersionbar_immersionbar            : 'com.gyf.immersionbar:immersionbar:3.0.0', // 沉浸式框架：https://github.com/gyf-dev/ImmersionBar
+                // 动画资源：https://lottiefiles.com、https://icons8.com/animated-icons
+                com_airbnb_android_lottie                    : 'com.airbnb.android:lottie:3.6.1', // 动画解析库：https://github.com/airbnb/lottie-android
+                // 侧滑框架：https://github.com/luckybilly/SmartSwipe
+                com_billy_android_smart_swipe                : 'com.billy.android:smart-swipe:1.1.2',
+                com_billy_android_smart_swipe_x              : 'com.billy.android:smart-swipe-x:1.1.0',
+                // 智能下拉刷新框架：https://github.com/scwang90/SmartRefreshLayout
+                com_scwang_smart_refresh_layout_kernel       : 'com.scwang.smart:refresh-layout-kernel:2.0.3',
+                com_scwang_smart_refresh_header_material     : 'com.scwang.smart:refresh-header-material:2.0.3',
+                // 指示器框架：https://github.com/ongakuer/CircleIndicator
+                me_relex_circleindicator                     : 'me.relex:circleindicator:2.1.4',
+                // 权限请求框架：https://github.com/getActivity/XXPermissions
+                com_hjq_xxpermissions                        : 'com.hjq:xxpermissions:9.8',
+                // https://github.com/getActivity/ToastUtils
+                com_hjq_toast                                : 'com.hjq:toast:8.8',
+                // https://github.com/getActivity/TitleBar
+                com_hjq_titlebar                             : 'com.hjq:titlebar:8.2',
+                com_hjq_gson_factory                         : 'com.hjq.gson:factory:2.2', // Gson 解析容错：https://github.com/getActivity/GsonFactory
+                com_hjq_http                                 : 'com.hjq:http:9.0', // https://github.com/getActivity/EasyHttp
+        ]
+
+        depend_annotation_processor = [
+                com_github_bumptech_glide_compiler: 'com.github.bumptech.glide:compiler:4.12.0', // glide compiler
         ]
 
         depends_debug = [
@@ -40,6 +76,7 @@ subprojects {
         depends_android_x = [
                 // com.android.support:support-annotations https://mvnrepository.com/artifact/androidx.annotation/annotation
                 androidx_annotation                       : 'androidx.annotation:annotation:1.1.0',
+                androidx_core_core                        : 'androidx.core:core:1.1.0',
                 // com.android.support:multidex           https://mvnrepository.com/artifact/androidx.multidex/multidex
                 androidx_multidex                         : 'androidx.multidex:multidex:2.0.1',
                 // com.android.support:multidex-instrumentation https://mvnrepository.com/artifact/androidx.multidex/multidex-instrumentation

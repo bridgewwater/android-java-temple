@@ -28,6 +28,9 @@ demoAssembleRelease: demoRelease
 demoInstallDebug:
 	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):installDebug
 
+demoInstallRelease:
+	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):installRelease
+
 help-demo:
 	@echo "=> ${ROOT_PWD}/${ROOT_APP_NAME_demo}/z-demo.mk : android application module [ ${ROOT_APP_NAME_demo} ] task"
 	@echo "make ${ROOT_APP_NAME_demo}Clean                         ~> clean of module [ ${ROOT_APP_NAME_demo} ]"
@@ -39,4 +42,5 @@ help-demo:
 	@echo "make ${ROOT_APP_NAME_demo}AssembleDebug                 ~> assemble debug of module [ ${ROOT_APP_NAME_demo} ]"
 	@echo "make ${ROOT_APP_NAME_demo}AssembleRelease               ~> assemble release of module [ ${ROOT_APP_NAME_demo} ]"
 	@echo "make ${ROOT_APP_NAME_demo}InstallDebug                  ~> install debug of module [ ${ROOT_APP_NAME_demo} ]"
+	@echo "make ${ROOT_APP_NAME_demo}InstallRelease                ~> install release of module [ ${ROOT_APP_NAME_demo} ]"
 	@echo ""

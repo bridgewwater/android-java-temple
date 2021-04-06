@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'dagger.hilt.android.plugin'
+//apply plugin: 'dagger.hilt.android.plugin'
 
 // apply from: rootProject.file("gradle/codeQualityApp.gradle")
 
@@ -28,10 +28,10 @@ android {
 //        enabled = true
 //    }
     // Android Studio 4.0
-    buildFeatures {
-        viewBinding = true
+//    buildFeatures {
+//        viewBinding = true
 //        dataBinding = true
-    }
+//    }
 
     lintOptions {
 //        checkReleaseBuilds false
@@ -123,11 +123,6 @@ dependencies {
     // butter knife only for module test!
 //    implementation depends.butterknife
 //    annotationProcessor apt_compiler.butterknife_compiler
-
-    // https://github.com/google/dagger
-    // https://developer.android.com/training/dependency-injection/hilt-android
-    implementation dagger_depends.com_google_dagger_hilt_android
-    annotationProcessor dagger_depends.com_google_dagger_hilt_android_compiler
 
     // implementation base
     implementation depends.com_hjq_toast

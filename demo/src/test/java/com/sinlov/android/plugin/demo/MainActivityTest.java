@@ -12,8 +12,6 @@ import org.robolectric.shadows.ShadowToast;
 import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ActivityScenario;
 
-import com.sinlov.android.plugin.demo.databinding.ActivityMainBinding;
-
 import test.RoboTemp;
 
 import static junit.framework.Assert.assertEquals;
@@ -21,7 +19,7 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 
 /**
- * test {@link MainActivityAbstract}
+ * test {@link MainTempActivityAbstract}
  * <pre>
  *     sinlov
  *
@@ -40,17 +38,17 @@ import static junit.framework.Assert.assertNull;
  */
 public class MainActivityTest extends RoboTemp {
     //    private MainActivityAbstract mainActivity;
-    private ActivityController<MainActivityAbstract> activityController;
-    private ActivityScenario<MainActivityAbstract> activityScenario;
+    private ActivityController<MainTempActivityAbstract> activityController;
+    private ActivityScenario<MainTempActivityAbstract> activityScenario;
 
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
         // Create new activity http://robolectric.org/androidx_test/
-        activityScenario = ActivityScenario.launch(MainActivityAbstract.class);
+        activityScenario = ActivityScenario.launch(MainTempActivityAbstract.class);
         activityScenario.moveToState(Lifecycle.State.CREATED);
-        this.activityController = Robolectric.buildActivity(MainActivityAbstract.class).create().start().resume().visible();
+        this.activityController = Robolectric.buildActivity(MainTempActivityAbstract.class).create().start().resume().visible();
     }
 
     @Override
@@ -74,11 +72,10 @@ public class MainActivityTest extends RoboTemp {
 
     @Test
     public void testResultClickAndToast() {
-        this.activityScenario.onActivity(new ActivityScenario.ActivityAction<MainActivityAbstract>() {
+        this.activityScenario.onActivity(new ActivityScenario.ActivityAction<MainTempActivityAbstract>() {
             @Override
-            public void perform(MainActivityAbstract activity) {
-                ActivityMainBinding binding = ActivityMainBinding.inflate(activity.getLayoutInflater());
-                TextView tvResult = binding.mainProfile.tvResult;
+            public void perform(MainTempActivityAbstract activity) {
+                TextView tvResult = activity.findViewById(R.id.tv_result);
                 assertNotNull(tvResult);
                 tvResult.performClick();
                 // data-bing can ot test
