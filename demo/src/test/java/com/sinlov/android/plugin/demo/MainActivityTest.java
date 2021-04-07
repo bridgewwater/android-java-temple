@@ -19,7 +19,7 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 
 /**
- * test {@link MainTempActivityAbstract}
+ * test {@link MainActivity}
  * <pre>
  *     sinlov
  *
@@ -38,17 +38,17 @@ import static junit.framework.Assert.assertNull;
  */
 public class MainActivityTest extends RoboTemp {
     //    private MainActivityAbstract mainActivity;
-    private ActivityController<MainTempActivityAbstract> activityController;
-    private ActivityScenario<MainTempActivityAbstract> activityScenario;
+    private ActivityController<MainActivity> activityController;
+    private ActivityScenario<MainActivity> activityScenario;
 
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
         // Create new activity http://robolectric.org/androidx_test/
-        activityScenario = ActivityScenario.launch(MainTempActivityAbstract.class);
+        activityScenario = ActivityScenario.launch(MainActivity.class);
         activityScenario.moveToState(Lifecycle.State.CREATED);
-        this.activityController = Robolectric.buildActivity(MainTempActivityAbstract.class).create().start().resume().visible();
+        this.activityController = Robolectric.buildActivity(MainActivity.class).create().start().resume().visible();
     }
 
     @Override
@@ -72,9 +72,9 @@ public class MainActivityTest extends RoboTemp {
 
     @Test
     public void testResultClickAndToast() {
-        this.activityScenario.onActivity(new ActivityScenario.ActivityAction<MainTempActivityAbstract>() {
+        this.activityScenario.onActivity(new ActivityScenario.ActivityAction<MainActivity>() {
             @Override
-            public void perform(MainTempActivityAbstract activity) {
+            public void perform(MainActivity activity) {
                 TextView tvResult = activity.findViewById(R.id.tv_result);
                 assertNotNull(tvResult);
                 tvResult.performClick();

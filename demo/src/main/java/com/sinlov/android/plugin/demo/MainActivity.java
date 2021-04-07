@@ -13,7 +13,7 @@ import com.sinlov.temp.android.utils.ClipboardUtils;
 import java.util.List;
 
 
-public class MainTempActivityAbstract extends AbsTemplateActivity {
+public class MainActivity extends AbsTemplateActivity {
 
     @Override
     protected int getLayoutId() {
@@ -55,7 +55,7 @@ public class MainTempActivityAbstract extends AbsTemplateActivity {
     }
 
     private void requestFullPermission() {
-        XXPermissions.with(MainTempActivityAbstract.this)
+        XXPermissions.with(MainActivity.this)
 //                .permission(Permission.MANAGE_EXTERNAL_STORAGE)
                 .permission(Permission.READ_EXTERNAL_STORAGE)
                 .permission(Permission.WRITE_EXTERNAL_STORAGE)
@@ -78,7 +78,7 @@ public class MainTempActivityAbstract extends AbsTemplateActivity {
             if (never) {
                 toast("被永久拒绝授权，请手动授予权限");
                 // 如果是被永久拒绝就跳转到应用权限系统设置页面
-                XXPermissions.startPermissionActivity(MainTempActivityAbstract.this, permissions);
+                XXPermissions.startPermissionActivity(MainActivity.this, permissions);
             } else {
                 toast("文件存储权限失败");
                 requestFullPermission();
