@@ -26,11 +26,11 @@
             android:text="Skip to module" />
 
         <Button
-            android:id="@+id/btn_get_module_data"
+            android:id="@+id/btn_skip_app_details"
             style="@style/Sinlov.Button.Menu"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:text="get module data" />
+            android:text="skip app details" />
 
         <Button
             android:id="@+id/btn_grant_permission"

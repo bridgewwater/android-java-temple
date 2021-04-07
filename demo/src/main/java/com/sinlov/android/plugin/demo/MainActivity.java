@@ -24,8 +24,8 @@ public class MainActivity extends AbsTemplateActivity {
     protected void initView() {
         setOnClickListener(
                 R.id.btn_init_check,
-                R.id.btn_get_module_data,
                 R.id.btn_skip_to_module,
+                R.id.btn_skip_app_details,
                 R.id.btn_grant_permission,
                 R.id.tv_result
         );
@@ -43,8 +43,8 @@ public class MainActivity extends AbsTemplateActivity {
             toastBottom("module init check");
         } else if (id == R.id.btn_skip_to_module) {
             toast("Skip to module");
-        } else if (id == R.id.btn_get_module_data) {
-            toastBottom("get module data");
+        } else if (id == R.id.btn_skip_app_details) {
+            XXPermissions.startApplicationDetails(this);
         } else if (id == R.id.btn_grant_permission) {
             requestFullPermission();
         } else if (id == R.id.tv_result) {
