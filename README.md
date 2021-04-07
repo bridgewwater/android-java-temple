@@ -23,8 +23,6 @@ repo: [https://github.com/bridgewwater/android-java-temple](https://github.com/b
 | :----------------------------- | :------ |
 | androidx.multidex:multidex     | 2.0.1   |
 | androidx.appcompat:appcompat   | 1.2.0   |
-| com.google.dagger:dagger       | 2.3.2   |
-| com.google.dagger:hilt-android | 2.32-alpha   |
 
 - test library version
 
