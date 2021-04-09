@@ -57,7 +57,8 @@ android.libraryVariants.all { variant ->
                 dir: "$project.buildDir/intermediates/javac/${variantName}",
                 excludes: excludes_base
         )
-        def mainSrc = "$project.projectDir/src/main/java"
+        //        def mainSrc = "$project.projectDir/src/main/java"
+        def mainSrc = android.sourceSets.main.java.srcDirs
         sourceDirectories.setFrom(files([mainSrc]))
         classDirectories.setFrom(files([codeTree]))
         executionData.setFrom(fileTree(

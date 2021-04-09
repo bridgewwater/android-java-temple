@@ -1,0 +1,44 @@
+apply plugin: "checkstyle"
+
+checkstyle.toolVersion = 7.3
+
+String getCheckstyleConfig() {
+    if (hasProperty('CHECKSTYLE_CONFIG')) {
+        return CHECKSTYLE_CONFIG
+    } else {
+        println ">> not set checkstyle with [ CHECKSTYLE_CONFIG ] at ./gradle/checkstyle, just use: checkstyle-easy.xml"
+        return "checkstyle-easy.xml"
+    }
+}
+
+String checkCheckStyleConfig() {
+    def configSet = this.getCheckstyleConfig()
+    def configPath = "./gradle/checkstyle/" + configSet
+    if (rootProject.file(configPath).exists()) {
+        println ">> just use checkstyle config with: " + rootProject.file(configPath)
+        return configPath
+    } else {
+        println String.format(">> not found [ CHECKSTYLE_CONFIG ] file\n-> path: " +
+                configPath + "\njust use: ./gradle/checkstyle/checkstyle-easy.xml")
+        return "./gradle/checkstyle/checkstyle-easy.xml"
+    }
+}
+
+android.libraryVariants.all { variant ->
+    def variantName = variant.name.capitalize()
+
+    /**
+     * Generates Checkstyle reports based off the source code.
+     */
+    task("checkstyle$variantName", type: Checkstyle, dependsOn: "assemble$variantName") {
+        group "Reporting"
+        description "Generate ${variantName} Checkstyle reports."
+
+        ignoreFailures = true
+        reports.html.enabled = true
+
+        configFile = file("${rootDir}/gradle/checkstyle/checkstyle-easy.xml")
+        source = files(android.sourceSets.main.java.srcDirs)
+        classpath = files(configurations.compile.files)
+    }
+}

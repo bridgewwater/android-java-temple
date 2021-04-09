@@ -8,7 +8,7 @@ unit test code coverage use as: [https://www.eclemma.org/jacoco/](https://www.ec
 
 ## jacoco coverage
 
-- use at different module when in libraray
+- use at different module when in library
 
 ```gradle
 apply plugin: 'com.android.library'
