@@ -24,6 +24,7 @@ String checkCheckStyleConfig() {
     }
 }
 
+// Creates tasks based on the library build variant (productFlavor + buildType = variant)
 android.libraryVariants.all { variant ->
     def variantName = variant.name.capitalize()
 

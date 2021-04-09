@@ -34,7 +34,7 @@ jacoco {
     toolVersion = "$jacoco_version"
 }
 
-// Creates tasks based on the application build variant (productFlavor + buildType = variant)
+// Creates tasks based on the library build variant (productFlavor + buildType = variant)
 android.libraryVariants.all { variant ->
     def variantName = variant.name.capitalize()
 
