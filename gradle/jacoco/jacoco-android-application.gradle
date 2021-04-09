@@ -1,0 +1,80 @@
+// https://www.eclemma.org/jacoco/
+apply plugin: 'jacoco'
+
+//android {
+//    buildTypes {
+//        debug {
+//            testCoverageEnabled true
+//        }
+//    }
+//}
+
+def jacoco_version = "0.8.6"
+
+def excludes_base = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/android/databinding/*',
+        '**/*$ViewInjector*.*',
+        '**/*$ViewBinder*.*',
+        '**/BuildConfig.*',
+        '**/*Application*.*',
+        '**/*Component*.*',
+        '**/UiUtils.*',
+        '**/*Binding*.*',
+        '**/*Retrofit*.*',
+        '**/*BR*.*',
+        '**/io/realm/*',
+        '**/*Rx*.*',
+        '**/Manifest*.*',
+        '**/*$Lambda$*.*',
+        '**/*Module.*',
+        '**/*Dagger*.*',
+        '**/*MembersInjector*.*',
+        '**/*_Provide*Factory*.*',
+        '**/*_Factory*.*']
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+jacoco {
+    toolVersion = "$jacoco_version"
+}
+
+// Creates tasks based on the application build variant (productFlavor + buildType = variant)
+android.applicationVariants.all { variant ->
+    def variantName = variant.name.capitalize()
+
+    /**
+     * Generates Jacoco coverage reports based off the unit tests.
+     */
+    task("jacoco${variantName}Report", type: JacocoReport, dependsOn: "test${variantName}UnitTest") {
+        group "Reporting"
+        description "Generate ${variantName} Jacoco coverage reports."
+
+//        executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+//        executionData file("${buildDir}/jacoco/test${variantName}UnitTest.exec")
+        reports {
+            csv.enabled = false
+            xml.enabled = true
+            xml.setDestination(file("${buildDir}/reports/jacoco/report.xml"))
+            html.enabled = true
+            html.setDestination(file("$buildDir/reports/jacocoHtml"))
+        }
+        def codeTree = fileTree(
+                dir: "$project.buildDir/intermediates/javac/${variantName}",
+                excludes: excludes_base
+        )
+        def mainSrc = "$project.projectDir/src/main/java"
+        sourceDirectories.setFrom(files([mainSrc]))
+        classDirectories.setFrom(files([codeTree]))
+        executionData.setFrom(fileTree(
+                dir: project.buildDir,
+                includes: [
+                        "jacoco/test${variantName}UnitTest.exec",
+                        "outputs/code_coverage/${variantName}AndroidTest/connected/**/*.ec"
+                ]
+        ))
+    }
+}

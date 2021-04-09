@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
+// jacoco android application
+apply from: rootProject.file("gradle/jacoco/jacoco-android-application.gradle")
 //apply plugin: 'dagger.hilt.android.plugin'
-
-// apply from: rootProject.file("gradle/codeQualityApp.gradle")
 
 android {
     compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
@@ -68,14 +68,6 @@ android {
             }
         }
     }
-
-    // testOptions.unitTests {
-    //     all {
-    //         jacoco {
-    //             includeNoLocationClasses = true
-    //         }
-    //     }
-    // }
 
     buildTypes {
         debug {
