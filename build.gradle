@@ -5,6 +5,7 @@ apply from: rootProject.file("gradle/utils.gradle")
 
 buildscript {
     repositories {
+//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
 //        jcenter()
         google()
