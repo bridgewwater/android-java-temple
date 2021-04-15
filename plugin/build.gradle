@@ -3,6 +3,8 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file("gradle/maven/nexusUpload.gradle")
 // jacoco android library
 //apply from: rootProject.file("gradle/jacoco/jacoco-android-library.gradle")
+// checkstyle android library
+//apply from: rootProject.file("gradle/checkstyle/checkstyle-android-library.gradle")
 
 android {
     compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
