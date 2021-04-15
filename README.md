@@ -37,4 +37,4 @@ more version see [package.gradle](package.gradle)
 
 if application use [view binding](https://developer.android.com/topic/libraries/view-binding)
 
-if can not found databinding class, just use `File -> Invalidate Caches / Just Restart` 
+if can not found databinding class, just use `File -> Invalidate Caches / Just Restart`
