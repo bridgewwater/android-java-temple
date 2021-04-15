@@ -1,8 +1,8 @@
 /**
- * You can use checkNexusModuleConfig at module project for check
+ * You can use checkMavenModuleConfig at module project for check
  *
  * <pre>
- *     task clean(type: Delete) {*          checkNexusModuleConfig()
+ *     task clean(type: Delete) {*          checkMavenModuleConfig()
  *          delete project.buildDir
  *}* </pre>
  * https://docs.gradle.org/6.5/userguide/upgrading_version_5.html#legacy_publication_system_is_deprecated_and_replaced_with_the_publish_plugins
@@ -14,7 +14,7 @@ apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-def checkNexusModuleConfig() {
+def checkMavenModuleConfig() {
     String versionName = getVersionName()
     int versionCode = getVersionCode()
     String groupSet = getGroupSet()
@@ -36,10 +36,10 @@ def checkNexusModuleConfig() {
             isStringEmpty(pomArtifactId) || isStringEmpty(pomName) ||
             isStringEmpty(repositoryUsername) || isStringEmpty(repositoryPassword)
     ) {
-        throw new IllegalArgumentException("checkNexusModuleConfig error, please check log!")
+        throw new IllegalArgumentException("checkMavenModuleConfig error, please check log!")
     } else {
         def sb = new StringBuffer()
-        sb.append("checkNexusModuleConfig at module [ ")
+        sb.append("checkMavenModuleConfig at module [ ")
         sb.append(project.name)
         sb.append(" ] success!")
         sb.append("\n\t versionName: ")
@@ -277,7 +277,7 @@ javadoc {
 }
 
 ext {
-    checkNexusModuleConfig = this.&checkNexusModuleConfig
+    checkMavenModuleConfig = this.&checkMavenModuleConfig
 //    getPomArtifactId = this.&getPomArtifactId
 //    getPomName = this.&getPomName
 //    getPomPackaging = this.&getPomPackaging

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 // uploadArchives
-apply from: rootProject.file("gradle/nexusUpload.gradle")
+apply from: rootProject.file("gradle/maven/nexusUpload.gradle")
 // jacoco android library
 //apply from: rootProject.file("gradle/jacoco/jacoco-android-library.gradle")
 
