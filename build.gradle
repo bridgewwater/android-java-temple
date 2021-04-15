@@ -5,7 +5,8 @@ apply from: rootProject.file("gradle/utils.gradle")
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
+//        jcenter()
         google()
     }
 
