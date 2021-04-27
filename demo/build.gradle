@@ -127,6 +127,12 @@ dependencies {
             depends_android_x.androidx_annotation
 
     // TODO load module
+    if (isReleaseBuild()) {
+        //todo release depends
+//        implementation ''
+    } else {
 //     implementation project(':plugin')
+    }
+
 }
 
