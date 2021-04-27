@@ -126,11 +126,12 @@ dependencies {
 //            depends_android_x.com_google_android_material_material,
             depends_android_x.androidx_annotation
 
-    // TODO load module
+
     if (isReleaseBuild()) {
         //todo release depends
 //        implementation ''
     } else {
+        // todo load local module
 //     implementation project(':plugin')
     }
 
