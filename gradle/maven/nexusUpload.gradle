@@ -299,6 +299,15 @@ afterEvaluate { project ->
                     }
                 }
             }
+            doLast {
+                println """=> uploadArchives success:
+repository url : ${this.isReleaseBuild() ? this.getReleaseRepositoryUrl() : this.getSnapshotRepositoryUrl()} 
+pom.groupId    : ${this.getGroupSet()}
+pom.artifactId : ${this.getPomArtifactId()}
+pom.version    : ${this.getVersionName()}
+gradle useage  : implementation "${this.getGroupSet()}:${this.getPomArtifactId()}:${this.getVersionName()}"
+"""
+            }
         }
     }
 
