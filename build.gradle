@@ -3,6 +3,13 @@
 apply from: rootProject.file("package.gradle")
 apply from: rootProject.file("gradle/utils.gradle")
 
+configurations.all {
+    // Dynamic Modules
+    resolutionStrategy.cacheDynamicVersionsFor 10, TimeUnit.MINUTES
+    // Changing Modules
+    resolutionStrategy.cacheChangingModulesFor 0, TimeUnit.SECONDS
+}
+
 buildscript {
     repositories {
 //        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
