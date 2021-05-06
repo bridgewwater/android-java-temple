@@ -40,6 +40,21 @@
             android:text="grant permission" />
     </GridLayout>
 
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textIsSelectable="true"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/darker_gray" />
+
 
     <TextView
         android:id="@+id/tv_result"

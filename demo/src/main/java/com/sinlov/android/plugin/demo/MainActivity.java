@@ -8,6 +8,7 @@ import com.hjq.permissions.OnPermissionCallback;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
 import com.sinlov.temp.android.AbsTemplateActivity;
+import com.sinlov.temp.android.system.PMSUtil;
 import com.sinlov.temp.android.utils.ClipboardUtils;
 
 import java.util.List;
@@ -29,6 +30,11 @@ public class MainActivity extends AbsTemplateActivity {
                 R.id.btn_grant_permission,
                 R.id.tv_result
         );
+        TextView tvInfo = findViewById(R.id.tv_info);
+        tvInfo.setText(String.format("Name: %s, %s",
+                PMSUtil.selfAppName(this),
+                PMSUtil.isSelfDebug(this) ? "mode DEBUG" : "Release"
+        ));
     }
 
     @Override

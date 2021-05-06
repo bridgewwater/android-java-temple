@@ -20,140 +20,185 @@ subprojects {
 
         depends = [
                 // Bugly 异常捕捉：https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20190418140644
-                com_tencent_bugly_crashreport                : 'com.tencent.bugly:crashreport:3.3.3',
-                com_tencent_bugly_nativecrashreport          : 'com.tencent.bugly:nativecrashreport:3.7.700',
-                com_jakewharton_timber_timber                : 'com.jakewharton.timber:timber:4.7.1', // 日志 https://github.com/JakeWharton/timber
-                gson                                         : 'com.google.code.gson:gson:2.8.6',
-                retrofit2_converter_gson                     : 'com.squareup.retrofit2:converter-gson:2.2.0',
-                jetbrains_annotations                        : 'org.jetbrains:annotations:15.0',
-                turbodex                                     : 'com.github.asLody:turbodex:1.1.0',
-                com_google_zxing_core                        : 'com.google.zxing:core:3.3.0',
-                com_journeyapps_zxing_android_embedded       : 'com.journeyapps:zxing-android-embedded:4.2.0', // https://github.com/journeyapps/zxing-android-embedded
-                org_greenrobot_eventbus                      : 'org.greenrobot:eventbus:3.2.0', // https://github.com/greenrobot/EventBus
-                butterknife                                  : 'com.jakewharton:butterknife:10.2.3',
-                com_squareup_okhttp3_okhttp                  : 'com.squareup.okhttp3:okhttp:3.12.12',
-                com_squareup_okhttp3_logging_interceptor     : 'com.squareup.okhttp3:logging-interceptor:3.8.0',
-                com_squareup_retrofit2_retrofit              : 'com.squareup.retrofit2:retrofit:2.4.0',
-                com_squareup_retrofit2_retrofit_converters   : 'com.squareup.retrofit2:retrofit-converters:2.4.0',
-                com_squareup_retrofit2_retrofit_adapters     : 'com.squareup.retrofit2:retrofit-adapters:2.4.0',
-                com_squareup_retrofit2_converter_gson        : 'com.squareup.retrofit2:converter-gson:2.4.0',
-                com_github_bumptech_glide_glide              : 'com.github.bumptech.glide:glide:4.12.0', // https://github.com/bumptech/glide doc at https://muyangmin.github.io/glide-docs-cn/
+                com_tencent_bugly_crashreport                : "com.tencent.bugly:crashreport:3.3.3",
+                com_tencent_bugly_nativecrashreport          : "com.tencent.bugly:nativecrashreport:3.7.700",
+                // 日志 https://github.com/JakeWharton/timbr
+                com_jakewharton_timber_timber                : "com.jakewharton.timber:timber:4.7.1",
+                gson                                         : "com.google.code.gson:gson:2.8.6",
+                retrofit2_converter_gson                     : "com.squareup.retrofit2:converter-gson:2.2.0",
+                jetbrains_annotations                        : "org.jetbrains:annotations:15.0",
+                turbodex                                     : "com.github.asLody:turbodex:1.1.0",
+                com_google_zxing_core                        : "com.google.zxing:core:3.3.0",
+                // https://github.com/journeyapps/zxing-android-embeded"
+                com_journeyapps_zxing_android_embedded       : "com.journeyapps:zxing-android-embedded:4.2.0",
+                // https://github.com/greenrobot/EventBus
+                org_greenrobot_eventbus                      : "org.greenrobot:eventbus:3.2.0",
+                butterknife                                  : "com.jakewharton:butterknife:10.2.3",
+                com_squareup_okhttp3_okhttp                  : "com.squareup.okhttp3:okhttp:3.12.12",
+                com_squareup_okhttp3_logging_interceptor     : "com.squareup.okhttp3:logging-interceptor:3.8.0",
+                com_squareup_retrofit2_retrofit              : "com.squareup.retrofit2:retrofit:2.4.0",
+                com_squareup_retrofit2_retrofit_converters   : "com.squareup.retrofit2:retrofit-converters:2.4.0",
+                com_squareup_retrofit2_retrofit_adapters     : "com.squareup.retrofit2:retrofit-adapters:2.4.0",
+                com_squareup_retrofit2_converter_gson        : "com.squareup.retrofit2:converter-gson:2.4.0",
+                // https://github.com/bumptech/glide doc at https://bumptech.github.io/glide/doc/getting-started.html
+                com_github_bumptech_glide_glide              : "com.github.bumptech.glide:glide:4.12.0",
                 // https://mvnrepository.com/artifact/com.github.bumptech.glide/okhttp3-integration
-                com_github_bumptech_glide_okhttp3_integration: 'com.github.bumptech.glide:okhttp3-integration:4.12.0',
+                com_github_bumptech_glide_okhttp3_integration: "com.github.bumptech.glide:okhttp3-integration:4.12.0",
                 // doc https://github.com/Baseflow/PhotoView#usage https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
-                com_github_chrisbanes_photo_view             : 'com.github.chrisbanes:PhotoView:2.3.0',
-                org_aspectj_aspectjrt                        : 'org.aspectj:aspectjrt:1.9.6', // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
-                com_gyf_immersionbar_immersionbar            : 'com.gyf.immersionbar:immersionbar:3.0.0', // 沉浸式框架：https://github.com/gyf-dev/ImmersionBar
+                com_github_chrisbanes_photo_view             : "com.github.chrisbanes:PhotoView:2.3.0",
+                // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+                org_aspectj_aspectjrt                        : "org.aspectj:aspectjrt:1.9.6",
+                // 沉浸式框架：https://github.com/gyf-dev/ImmersionBar
+                com_gyf_immersionbar_immersionbar            : "com.gyf.immersionbar:immersionbar:3.0.0",
                 // 动画资源：https://lottiefiles.com、https://icons8.com/animated-icons
-                com_airbnb_android_lottie                    : 'com.airbnb.android:lottie:3.6.1', // 动画解析库：https://github.com/airbnb/lottie-android
+                // 动画解析库：https://github.com/airbnb/lottie-android
+                com_airbnb_android_lottie                    : "com.airbnb.android:lottie:3.6.1",
                 // 侧滑框架：https://github.com/luckybilly/SmartSwipe
-                com_billy_android_smart_swipe                : 'com.billy.android:smart-swipe:1.1.2',
-                com_billy_android_smart_swipe_x              : 'com.billy.android:smart-swipe-x:1.1.0',
+                com_billy_android_smart_swipe                : "com.billy.android:smart-swipe:1.1.2",
+                com_billy_android_smart_swipe_x              : "com.billy.android:smart-swipe-x:1.1.0",
                 // 智能下拉刷新框架：https://github.com/scwang90/SmartRefreshLayout
-                com_scwang_smart_refresh_layout_kernel       : 'com.scwang.smart:refresh-layout-kernel:2.0.3',
-                com_scwang_smart_refresh_header_material     : 'com.scwang.smart:refresh-header-material:2.0.3',
+                com_scwang_smart_refresh_layout_kernel       : "com.scwang.smart:refresh-layout-kernel:2.0.3",
+                com_scwang_smart_refresh_header_material     : "com.scwang.smart:refresh-header-material:2.0.3",
                 // 指示器框架：https://github.com/ongakuer/CircleIndicator
-                me_relex_circleindicator                     : 'me.relex:circleindicator:2.1.4',
+                me_relex_circleindicator                     : "me.relex:circleindicator:2.1.4",
                 // 权限请求框架：https://github.com/getActivity/XXPermissions
-                com_hjq_xxpermissions                        : 'com.hjq:xxpermissions:9.8',
+                com_hjq_xxpermissions                        : "com.hjq:xxpermissions:9.8",
                 // https://github.com/getActivity/ToastUtils
-                com_hjq_toast                                : 'com.hjq:toast:8.8',
+                com_hjq_toast                                : "com.hjq:toast:8.8",
                 // https://github.com/getActivity/TitleBar
-                com_hjq_titlebar                             : 'com.hjq:titlebar:8.2',
-                com_hjq_gson_factory                         : 'com.hjq.gson:factory:2.2', // Gson 解析容错：https://github.com/getActivity/GsonFactory
-                com_hjq_http                                 : 'com.hjq:http:9.0', // https://github.com/getActivity/EasyHttp
+                com_hjq_titlebar                             : "com.hjq:titlebar:8.2",
+                // Gson 解析容错：https://github.com/getActivity/GsonFactory
+                com_hjq_gson_factory                         : "com.hjq.gson:factory:2.2",
+                // https://github.com/getActivity/EasyHttp
+                com_hjq_http                                 : "com.hjq:http:9.0",
         ]
 
         depend_annotation_processor = [
-                com_github_bumptech_glide_compiler: 'com.github.bumptech.glide:compiler:4.12.0', // glide compiler
+                // glide compiler
+                com_github_bumptech_glide_compiler: "com.github.bumptech.glide:compiler:4.12.0",
         ]
 
         depends_debug = [
-                com_squareup_leakcanary_leakcanary_android: 'com.squareup.leakcanary:leakcanary-android:2.5', // https://github.com/square/leakcanary
-                com_hjq_logcat                            : 'com.hjq:logcat:9.2', // https://github.com/getActivity/Logcat
+                // https://github.com/square/leakcanary
+                com_squareup_leakcanary_leakcanary_android: "com.squareup.leakcanary:leakcanary-android:2.5",
+                // https://github.com/getActivity/Logcat
+                com_hjq_logcat                            : "com.hjq:logcat:9.2",
         ]
+
+        // https://developer.android.com/jetpack/androidx/releases/annotation
+        depends_android_x_annotation_version = "1.2.0"
+        // https://developer.android.com/jetpack/androidx/releases/core
+        depends_android_x_core_version = "1.3.2"
+        // https://developer.android.com/jetpack/androidx/releases/appcompat
+        depends_android_x_appcompat_version = "1.2.0"
+        // https://developer.android.com/jetpack/androidx/releases/legacy
+        depends_android_x_legacy_version = "1.0.0"
+        // https://developer.android.com/jetpack/androidx/releases/lifecycle
+        depends_android_x_lifecycle_version = "2.3.1"
+        // https://developer.android.com/jetpack/androidx/releases/recyclerview
+        depends_android_x_recyclerview_version = "1.2.0"
 
         depends_android_x = [
                 // com.android.support:support-annotations https://mvnrepository.com/artifact/androidx.annotation/annotation
-                androidx_annotation                       : 'androidx.annotation:annotation:1.1.0',
-                androidx_core_core                        : 'androidx.core:core:1.1.0',
+                androidx_annotation                              : "androidx.annotation:annotation:${depends_android_x_annotation_version}",
+                // https://mvnrepository.com/artifact/androidx.core/core
+                androidx_core_core                               : "androidx.core:core:${depends_android_x_core_version}",
+                // https://mvnrepository.com/artifact/androidx.core/core-ktx
+                androidx_core_core_ktx                           : "androidx.core:core-ktx:${depends_android_x_core_version}",
                 // com.android.support:multidex           https://mvnrepository.com/artifact/androidx.multidex/multidex
-                androidx_multidex                         : 'androidx.multidex:multidex:2.0.1',
+                androidx_multidex                                : "androidx.multidex:multidex:2.0.1",
                 // com.android.support:multidex-instrumentation https://mvnrepository.com/artifact/androidx.multidex/multidex-instrumentation
-                androidx_multidex_instrumentation         : 'androidx.multidex:multidex-instrumentation:2.0.0',
+                androidx_multidex_instrumentation                : "androidx.multidex:multidex-instrumentation:2.0.0",
                 // com.android.support.constraint:constraint-layout  https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
-                androidx_constraintlayout_constraintlayout: 'androidx.constraintlayout:constraintlayout:2.0.4',
+                androidx_constraintlayout_constraintlayout       : "androidx.constraintlayout:constraintlayout:2.0.4",
                 // com.android.support:appcompat-v7       https://mvnrepository.com/artifact/androidx.appcompat/appcompat
-                androidx_appcompat                        : 'androidx.appcompat:appcompat:1.2.0',
-                // com.android.support:recyclerview-v7    https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
-                androidx_recyclerview                     : 'androidx.recyclerview:recyclerview:1.1.0',
+                androidx_appcompat                               : "androidx.appcompat:appcompat:${depends_android_x_appcompat_version}",
                 // com.android.support:support-v4         https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
-                androidx_legacy_support_v4                : 'androidx.legacy:legacy-support-v4:1.0.0',
+                androidx_legacy_support_v4                       : "androidx.legacy:legacy-support-v4:${depends_android_x_legacy_version}",
                 // com.android.support:support-core-ui    https://mvnrepository.com/artifact/androidx.legacy/legacy-support-core-ui
-                androidx_legacy_support_core_ui           : 'androidx.legacy:legacy-support-core-ui:1.0.0',
+                androidx_legacy_support_core_ui                  : "androidx.legacy:legacy-support-core-ui:${depends_android_x_legacy_version}",
                 // com.android.support:support-core-utils https://mvnrepository.com/artifact/androidx.legacy/legacy-support-core-utils
-                androidx_legacy_support_core_utils        : 'androidx.legacy:legacy-support-core-utils:1.0.0',
+                androidx_legacy_support_core_utils               : "androidx.legacy:legacy-support-core-utils:${depends_android_x_legacy_version}",
+                // com.android.support:recyclerview-v7    https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
+                androidx_recyclerview                            : "androidx.recyclerview:recyclerview:${depends_android_x_recyclerview_version}",
                 // com.android.support:cardview-v7        https://mvnrepository.com/artifact/androidx.cardview/cardview
-                androidx_cardview                         : 'androidx.cardview:cardview:1.0.0',
+                androidx_cardview                                : "androidx.cardview:cardview:1.0.0",
                 // android.arch.lifecycle:common          https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common
-                androidx_lifecycle_common                 : 'androidx.lifecycle:lifecycle-common:2.2.0',
+                // if using Java8, use the following instead of lifecycle-compiler
+                androidx_lifecycle_common                        : "androidx.lifecycle:lifecycle-common:${depends_android_x_lifecycle_version}",
                 // android.arch.lifecycle:runtime         https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime
-                androidx_lifecycle_lifecycle_runtime      : 'androidx.lifecycle:lifecycle-runtime:2.2.0',
+                // Lifecycles only (without ViewModel or LiveData)
+                androidx_lifecycle_lifecycle_runtime             : "androidx.lifecycle:lifecycle-runtime:${depends_android_x_lifecycle_version}",
+                // android.arch.lifecycle:viewmodel       https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel
+                androidx_lifecycle_lifecycle_viewmodel           : "androidx.lifecycle:lifecycle-viewmodel:${depends_android_x_lifecycle_version}",
+                // android.arch.lifecycle:livedata        https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata
+                androidx_lifecycle_lifecycle_livedata            : "androidx.lifecycle:lifecycle-livedata:${depends_android_x_lifecycle_version}",
+                // lifecycle view model savedstate
+                androidx_lifecycle_lifecycle_viewmodel_savedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:${depends_android_x_lifecycle_version}",
                 // android.arch.lifecycle:extensions      https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-extensions
-                androidx_lifecycle_lifecycle_extensions   : 'androidx.lifecycle:lifecycle-extensions:2.2.0',
+                androidx_lifecycle_lifecycle_extensions          : "androidx.lifecycle:lifecycle-extensions:${depends_android_x_lifecycle_version}",
                 // com.android.support:design             https://mvnrepository.com/artifact/com.google.android.material/material
-                com_google_android_material_material      : 'com.google.android.material:material:1.2.1',
+                com_google_android_material_material             : "com.google.android.material:material:1.2.1",
+                // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
+                androidx_navigation_navigation_fragment_ktx      : "androidx.navigation:navigation-fragment-ktx:2.3.3",
+                // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
+                androidx_navigation_navigation_ui_ktx            : "androidx.navigation:navigation-ui-ktx:2.3.3",
         ]
 
         public_repo = [
-                aliyun    : 'http://maven.aliyun.com/nexus/content/groups/public/',
-                jitpack_io: 'https://jitpack.io',
+                aliyun    : "http://maven.aliyun.com/nexus/content/groups/public/",
+                jitpack_io: "https://jitpack.io",
         ]
 
         test_depends = [
-                junit                         : 'junit:junit:4.12',
-                mockito_core                  : 'org.mockito:mockito-core:2.7.22',
-                robolectric                   : 'org.robolectric:robolectric:4.4',
-                robolectric_shadows_framework : 'org.robolectric:shadows-framework:4.4',
-                robolectric_shadows_multidex  : 'org.robolectric:shadows-multidex:4.4',
-                androidx_test_core            : 'androidx.test:core:1.3.0',
+                junit                         : "junit:junit:4.12",
+                mockito_core                  : "org.mockito:mockito-core:2.7.22",
+                robolectric                   : "org.robolectric:robolectric:4.4",
+                robolectric_shadows_framework : "org.robolectric:shadows-framework:4.4",
+                robolectric_shadows_multidex  : "org.robolectric:shadows-multidex:4.4",
+                androidx_test_core            : "androidx.test:core:1.3.0",
                 // deprecated
-                robolectric_shadows_support_v4: 'org.robolectric:shadows-support-v4:3.3.2',
-                easymock                      : 'org.easymock:easymock:4.2',
-                powermock_core                : 'org.powermock:powermock-core:2.0.9',
-                powermock_module_junit4       : 'org.powermock:powermock-module-junit4:2.0.9',
-                powermock_api_easymock        : 'org.powermock:powermock-api-easymock:2.0.9',
-                okhttp3_logging_interceptor   : 'com.squareup.okhttp3:logging-interceptor:3.8.0@jar',
+                robolectric_shadows_support_v4: "org.robolectric:shadows-support-v4:3.3.2",
+                easymock                      : "org.easymock:easymock:4.2",
+                powermock_core                : "org.powermock:powermock-core:2.0.9",
+                powermock_module_junit4       : "org.powermock:powermock-module-junit4:2.0.9",
+                powermock_api_easymock        : "org.powermock:powermock-api-easymock:2.0.9",
+                okhttp3_logging_interceptor   : "com.squareup.okhttp3:logging-interceptor:3.8.0@jar",
         ]
 
         android_test_depends = [
-                androidx_test_ext_junit             : 'androidx.test.ext:junit:1.1.2',
-                androidx_test_espresso_espresso_core: 'androidx.test.espresso:espresso-core:3.3.0',
-                robotium_solo                       : 'com.jayway.android.robotium:robotium-solo:5.5.4',
-                uiautomator                         : 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1',
+                androidx_test_ext_junit             : "androidx.test.ext:junit:1.1.2",
+                androidx_test_espresso_espresso_core: "androidx.test.espresso:espresso-core:3.3.0",
+                robotium_solo                       : "com.jayway.android.robotium:robotium-solo:5.5.4",
+                uiautomator                         : "com.android.support.test.uiautomator:uiautomator-v18:2.1.1",
         ]
 
         apt_compiler = [
-                android_lifecycle_compiler: 'android.arch.lifecycle:compiler:1.1.0',
-                butterknife_compiler      : 'com.jakewharton:butterknife-compiler:10.2.3',
+                android_lifecycle_compiler: "android.arch.lifecycle:compiler:1.1.0",
+                butterknife_compiler      : "com.jakewharton:butterknife-compiler:10.2.3",
         ]
 
         depends_kotlin = [
-                kotlin_stdlib_jre7: "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.10",
+                kotlin_stdlib             : "org.jetbrains.kotlin:kotlin-stdlib:1.4.32",
+                kotlin_stdlib_jre7        : "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.10",
+                // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
+                kotlinx_coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2",
+                // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-android
+                kotlinx_coroutines_android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2",
         ]
 
         depends_old = [
-                com_android_support_support_annotations: 'com.android.support:support-annotations:27.1.1',
-                com_android_support_support_core_ui    : 'com.android.support:support-core-ui:27.1.1',
-                com_android_support_support_v4         : 'com.android.support:support-v4:27.1.1',
-                com_android_support_appcompat_7        : 'com.android.support:appcompat-v7:27.1.1',
-                com_android_support_recyclerview_v7    : 'com.android.support:recyclerview-v7:27.1.1',
-                com_android_support_cardview_v7        : 'com.android.support:cardview-v7:27.1.1',
-                com_android_support_design             : 'com.android.support:design:27.1.1',
-                com_android_support_multidex           : 'com.android.support:multidex:1.0.1',
-                com_android_constraint_layout          : 'com.android.support.constraint:constraint-layout:1.1.3',
-                android_arch_lifecycle_runtime         : 'android.arch.lifecycle:runtime:1.1.0',
-                android_arch_lifecycle_extensions      : 'android.arch.lifecycle:extensions:1.1.0',
+                com_android_support_support_annotations: "com.android.support:support-annotations:27.1.1",
+                com_android_support_support_core_ui    : "com.android.support:support-core-ui:27.1.1",
+                com_android_support_support_v4         : "com.android.support:support-v4:27.1.1",
+                com_android_support_appcompat_7        : "com.android.support:appcompat-v7:27.1.1",
+                com_android_support_recyclerview_v7    : "com.android.support:recyclerview-v7:27.1.1",
+                com_android_support_cardview_v7        : "com.android.support:cardview-v7:27.1.1",
+                com_android_support_design             : "com.android.support:design:27.1.1",
+                com_android_support_multidex           : "com.android.support:multidex:1.0.1",
+                com_android_constraint_layout          : "com.android.support.constraint:constraint-layout:1.1.3",
+                android_arch_lifecycle_runtime         : "android.arch.lifecycle:runtime:1.1.0",
+                android_arch_lifecycle_extensions      : "android.arch.lifecycle:extensions:1.1.0",
         ]
     }
 }

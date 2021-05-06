@@ -3,6 +3,7 @@ package com.sinlov.android.plugin.demo;
 import android.app.Application;
 
 import com.hjq.toast.ToastUtils;
+import com.sinlov.temp.android.system.AMLUtil;
 
 
 public class MineApplication extends Application {
@@ -24,6 +25,9 @@ public class MineApplication extends Application {
     }
 
     private void initSDK(Application application) {
+        AMLUtil.getInstance()
+                .init(application)
+                .setDebug(true);
         ToastUtils.init(application);
     }
 }
