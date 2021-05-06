@@ -7,20 +7,7 @@ import android.content.pm.PackageManager;
 import androidx.annotation.NonNull;
 
 /**
- * <pre>
- *     sinlov
- *
- *     /\__/\
- *    /`    '\
- *  ≈≈≈ 0  0 ≈≈≈ Hello world!
- *    \  --  /
- *   /        \
- *  /          \
- * |            |
- *  \  ||  ||  /
- *   \_oo__oo_/≡≡≡≡≡≡≡≡o
- *
- * </pre>
+ * PMS Util
  * Created by sinlov on 2021/5/6.
  */
 public final class PMSUtil {
@@ -28,6 +15,12 @@ public final class PMSUtil {
     private static volatile boolean hasSelfDebugCheck = false;
     private static volatile boolean selfDebugCache = false;
 
+    /**
+     * check out self is debug
+     *
+     * @param context {@link Context}
+     * @return AndroidManifest.xml debuggable
+     */
     public static boolean isSelfDebug(Context context) {
         if (hasSelfDebugCheck) {
             return selfDebugCache;
@@ -46,10 +39,10 @@ public final class PMSUtil {
     }
 
     /**
-     * 获取软件版本号
+     * get self version code
      *
      * @param context {@link Context}
-     * @return 对应AndroidManifest.xml下android:versionCode
+     * @return as AndroidManifest.xml application node android:versionCode
      */
     public static int selfVersionCode(@NonNull Context context) {
         int versionCode = 0;
@@ -63,10 +56,10 @@ public final class PMSUtil {
     }
 
     /**
-     * 获取版本号名称
+     * get self version name
      *
      * @param context {@link Context}
-     * @return 对应AndroidManifest.xml下android:versionName
+     * @return as AndroidManifest.xml application node android:versionName
      */
     public static String selfVersionName(@NonNull Context context) {
         String verName = "";
@@ -80,10 +73,10 @@ public final class PMSUtil {
     }
 
     /**
-     * 获取当前 App 名称
+     * get self label string
      *
      * @param context {@link Context}
-     * @return 对应AndroidManifest.xml下 android:label
+     * @return as AndroidManifest.xml application node android:label
      */
     public static String selfAppName(@NonNull Context context) {
         try {

@@ -10,30 +10,30 @@ import androidx.annotation.Nullable;
 import androidx.collection.ArrayMap;
 
 /**
- * Activity Lifecycle 管理类
+ * Activity Lifecycle management
  * <br/>
- * 在 Application 的声明周期 {@link Application#onCreate()} 中使用
+ * use at Application {@link Application#onCreate()} to init
  * <pre>
- *        // Activity 栈管理初始化，默认会读取 apk debug 状态，打开日志
+ *        // Activity stack management init, will open log which apk debuggable status is true
  *         boolean isDebug = AMLUtil.getInstance()
  *                 .init(application)
  *                 .isDebug();
- *        // 也可以强制关闭 Debug
+ *        // can force close Debug
  *        AMLUtil.getInstance()
  *                 .init(application)
  *                 .setDebug(false);
  * </pre>
- * 功能
+ * function
  * <pre>
- *        // 安全获取 application
+ *        // safe way to get application
  *        AMLUtil.getInstance().getApplication();
- *        // 获取当前栈顶 Activity
+ *        // get top Activity
  *        AMLUtil.getInstance().getTopActivity()
- *        // 内存优化，销毁掉所有的界面
+ *        // memory optimization, destroy all activity
  *        AMLUtil.getInstance().finishAllActivities();
- *        // 内存优化，销毁除登录页之外的所有界面
+ *        // memory optimization, destroy all activity except LoginActivity.class
  *        AMLUtil.getInstance().finishAllActivities(LoginActivity.class);
- *        // 判断当前应用是否处于前台状态
+ *        // Determines whether the current application is in the foreground
  *        AMLUtil.getInstance().isForeground()
  * </pre>
  */
@@ -44,32 +44,32 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
     private final ArrayMap<String, Activity> mActivitySet = new ArrayMap<>();
 
     /**
-     * 当前应用上下文对象
+     * current application
      */
     private Application mApplication;
     /**
-     * 最后一个可见 Activity 标记
+     * tag of last Visible Activity
      */
     private String mLastVisibleTag;
     /**
-     * 最后一个不可见 Activity 标记
+     * tag of last Invisible Activity
      */
     private String mLastInvisibleTag;
     /**
-     * 当前是否在 Debug 模式
+     * flag of AMLUtil debug
      */
     private boolean isDebug;
 
 
     /**
-     * 使用必须先初始化, 默认情况会读取 Apk 是否在 Debug
+     * must init!. By default, it reads whether APK is DEBUG
      *
      * @param application {@link Application}
      */
     public AMLUtil init(Application application) {
         mApplication = application;
         mApplication.registerActivityLifecycleCallbacks(this);
-        // 默认情况会读取 Apk 是否在 Debug
+        // By default, it reads whether APK is DEBUG
         isDebug = PMSUtil.isSelfDebug(mApplication.getApplicationContext());
         return this;
     }
@@ -89,7 +89,7 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 获取 Application 对象
+     * get current Application
      */
     public Application getApplication() {
         checkInit();
@@ -97,7 +97,7 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 获取栈顶的 Activity
+     * get top Activity of visible
      */
     public Activity getTopActivity() {
         checkInit();
@@ -105,11 +105,11 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 判断当前应用是否处于前台状态, 通过最后一个 Activity 是否时记录的
+     * Determining whether the current application is in the foreground by recording the last visible activity
      */
     public boolean isForeground() {
         checkInit();
-        // 如果最后一个可见的 Activity 和最后一个不可见的 Activity 是同一个的话
+        // If the last visible activity is the same as the last invisible activity
         if (mLastVisibleTag.equals(mLastInvisibleTag)) {
             return false;
         }
@@ -118,14 +118,14 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 销毁所有的 Activity
+     * destroy all activity
      */
     public void finishAllActivities() {
         finishAllActivities((Class<? extends Activity>) null);
     }
 
     /**
-     * 销毁所有的 Activity，除这些 Class 之外的 Activity
+     * destroy all activity except classArray array
      */
     @SafeVarargs
     public final void finishAllActivities(Class<? extends Activity>... classArray) {
@@ -142,7 +142,7 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
                         }
                     }
                 }
-                // 如果不是白名单上面的 Activity 就销毁掉
+                // If the activity is not on the whitelist, destroy it
                 if (!whiteClazz) {
                     activity.finish();
                     mActivitySet.remove(key);
@@ -152,10 +152,10 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 获取一个对象的独立无二的标记, 同 object.getName() + Hex(object.hashCode())
+     * Gets a unique token for an object, as: object.getName() + Hex(object.hashCode())
      */
     private static String getObjectTag(Object object) {
-        // 对象所在的包名 + 对象的内存地址
+        // The class full name + the memory address of hashcode
         return object.getClass().getName() + Integer.toHexString(object.hashCode());
     }
 
@@ -215,7 +215,7 @@ public final class AMLUtil implements Application.ActivityLifecycleCallbacks {
         mActivitySet.remove(getObjectTag(activity));
         mLastInvisibleTag = getObjectTag(activity);
         if (getObjectTag(activity).equals(mLastVisibleTag)) {
-            // 清除当前标记
+            // clear the current flag
             mLastVisibleTag = null;
         }
     }
