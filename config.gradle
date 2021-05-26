@@ -1,0 +1,194 @@
+subprojects {
+    ext {
+        cfg_android = [
+                compileSdkVersion: 30,
+                buildToolsVersion: "30.0.5",
+                minSdkVersion    : 21,
+                targetSdkVersion : 26,
+        ]
+
+        lib_version = [
+                // https://developer.android.com/jetpack/androidx/releases/annotation
+                "android_x_annotation"  : "1.2.0",
+                // https://developer.android.com/jetpack/androidx/releases/core
+                "android_x_core"        : "1.3.2",
+                // https://developer.android.com/jetpack/androidx/releases/appcompat
+                "android_x_appcompat"   : "1.2.0",
+                // https://developer.android.com/jetpack/androidx/releases/legacy
+                "android_x_legacy"      : "1.0.0",
+                // https://developer.android.com/jetpack/androidx/releases/lifecycle
+                "android_x_lifecycle"   : "2.3.1",
+                // https://developer.android.com/jetpack/androidx/releases/recyclerview
+                "android_x_recyclerview": "1.2.0",
+                // https://square.github.io/retrofit/
+                "squareup_retrofit2"    : "2.4.0",
+                // https://bumptech.github.io/glide/doc/getting-started.html
+                "glide"                 : "4.12.0",
+                // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+                "aspectjrt"             : "1.9.6",
+                // https://mvnrepository.com/artifact/com.google.dagger/dagger
+                "dagger"                : "2.32",
+                // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
+                "dagger_hilt"           : "2.32-alpha",
+        ]
+
+        depends = [
+                "com.jakewharton.timber:timber"                : "com.jakewharton.timber:timber:4.7.1",
+                "com.google.code.gson:gson"                    : "com.google.code.gson:gson:2.8.6",
+                "com.github.asLody:turbodex"                   : "com.github.asLody:turbodex:1.1.0",
+                "com.squareup.okhttp3:okhttp"                  : "com.squareup.okhttp3:okhttp:3.12.12",
+                "com.squareup.okhttp3:logging-interceptor"     : "com.squareup.okhttp3:logging-interceptor:3.8.0",
+                "com.squareup.retrofit2:retrofit"              : "com.squareup.retrofit2:retrofit:${lib_version["squareup_retrofit2"]}",
+                "com.squareup.retrofit2:retrofit-converters"   : "com.squareup.retrofit2:retrofit-converters:${lib_version["squareup_retrofit2"]}",
+                "com.squareup.retrofit2:retrofit-adapters"     : "com.squareup.retrofit2:retrofit-adapters:${lib_version["squareup_retrofit2"]}",
+                "com.squareup.retrofit2:converter-gson"        : "com.squareup.retrofit2:converter-gson:${lib_version["squareup_retrofit2"]}",
+                // https://github.com/bumptech/glide doc at https://bumptech.github.io/glide/doc/getting-started.html
+                "com.github.bumptech.glide:glide"              : "com.github.bumptech.glide:glide:${lib_version["glide"]}",
+                // https://mvnrepository.com/artifact/com.github.bumptech.glide/okhttp3-integration
+                "com.github.bumptech.glide:okhttp3-integration": "com.github.bumptech.glide:okhttp3-integration:${lib_version["glide"]}",
+                "com.google.zxing:core"                        : "com.google.zxing:core:3.3.0",
+                "com.journeyapps:zxing-android-embedded"       : "com.journeyapps:zxing-android-embedded:4.2.0",
+                // Bugly 异常捕捉：https://bugly.qq.com/docs/user-guide/instruction-manual-android/?v=20190418140644
+                "com.tencent.bugly:crashreport"                : "com.tencent.bugly:crashreport:3.3.3",
+                "com.tencent.bugly:nativecrashreport"          : "com.tencent.bugly:nativecrashreport:3.7.700",
+                // aspectjrt https://mvnrepository.com/artifact/org.aspectj/aspectjrt
+                "org.aspectj:aspectjrt"                        : "org.aspectj:aspectjrt:${lib_version["aspectjrt"]}",
+                // 沉浸式框架：https://github.com/gyf-dev/ImmersionBar
+                "com.gyf.immersionbar:immersionbar"            : "com.gyf.immersionbar:immersionbar:3.0.0",
+                // 动画资源：https://lottiefiles.com、https://icons8.com/animated-icons
+                // 动画解析库：https://github.com/airbnb/lottie-android
+                "com.airbnb.android:lottie"                    : "com.airbnb.android:lottie:3.6.1",
+                // 智能下拉刷新框架：https://github.com/scwang90/SmartRefreshLayout
+                "com.scwang.smart:refresh-layout-kernel"       : "com.scwang.smart:refresh-layout-kernel:2.0.3",
+                "com.scwang.smart:refresh-header-material"     : "com.scwang.smart:refresh-header-material:2.0.3",
+                // 指示器框架：https://github.com/ongakuer/CircleIndicator
+                "me.relex:circleindicator"                     : "me.relex:circleindicator:2.1.4",
+                // doc https://github.com/Baseflow/PhotoView#usage https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
+                "com.github.chrisbanes:PhotoView"              : "com.github.chrisbanes:PhotoView:2.3.0",
+                // 权限请求框架：https://github.com/getActivity/XXPermissions
+                "com.hjq:xxpermissions"                        : "com.hjq:xxpermissions:9.8",
+                // https://github.com/getActivity/ToastUtils
+                "com.hjq:toast"                                : "com.hjq:toast:8.8",
+                // https://github.com/getActivity/TitleBar
+                "com.hjq:titlebar"                             : "com.hjq:titlebar:8.2",
+                // Gson 解析容错：https://github.com/getActivity/GsonFactory
+                "com.hjq.gson:factory"                         : "com.hjq.gson:factory:2.2",
+        ]
+
+        depends_debug = [
+                // https://github.com/square/leakcanary
+                "com.squareup.leakcanary:leakcanary-android": "com.squareup.leakcanary:leakcanary-android:2.5",
+                // https://github.com/getActivity/Logcat
+                "com.hjq:logcat"                            : "com.hjq:logcat:9.2",
+        ]
+
+        depends_android_x = [
+                // com.android.support:support-annotations https://mvnrepository.com/artifact/androidx.annotation/annotation
+                "androidx.annotation:annotation"                    : "androidx.annotation:annotation:${lib_version["android_x_annotation"]}",
+                // https://mvnrepository.com/artifact/androidx.core/core
+                "androidx.core:core"                                : "androidx.core:core:${lib_version["android_x_core"]}",
+                // https://mvnrepository.com/artifact/androidx.core/core-ktx
+                "androidx.core:core-"                               : "androidx.core:core-ktx:${lib_version["android_x_core"]}",
+                // com.android.support:multidex           https://mvnrepository.com/artifact/androidx.multidex/multidex
+                "androidx.multidex:multidex"                        : "androidx.multidex:multidex:2.0.1",
+                // com.android.support:multidex-instrumentation https://mvnrepository.com/artifact/androidx.multidex/multidex-instrumentation
+                "androidx.multidex:multidex-instrumentation"        : "androidx.multidex:multidex-instrumentation:2.0.0",
+                // com.android.support.constraint:constraint-layout  https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
+                "androidx.constraintlayout:constraintlayout"        : "androidx.constraintlayout:constraintlayout:2.0.4",
+                // com.android.support:appcompat-v7       https://mvnrepository.com/artifact/androidx.appcompat/appcompat
+                "androidx.appcompat:appcompat"                      : "androidx.appcompat:appcompat:${lib_version["android_x_appcompat"]}",
+                // com.android.support:support-v4         https://mvnrepository.com/artifact/androidx.legacy/legacy-support-v4
+                "androidx.legacy:legacy-support-v4"                 : "androidx.legacy:legacy-support-v4:${lib_version["android_x_legacy"]}",
+                // com.android.support:support-core-ui    https://mvnrepository.com/artifact/androidx.legacy/legacy-support-core-ui
+                "androidx.legacy:legacy-support-core-ui"            : "androidx.legacy:legacy-support-core-ui:${lib_version["android_x_legacy"]}",
+                // com.android.support:support-core-utils https://mvnrepository.com/artifact/androidx.legacy/legacy-support-core-utils
+                "androidx.legacy:legacy-support-core-utils"         : "androidx.legacy:legacy-support-core-utils:${lib_version["android_x_legacy"]}",
+                // com.android.support:recyclerview-v7    https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
+                "androidx.recyclerview:recyclerview"                : "androidx.recyclerview:recyclerview:${lib_version["android_x_recyclerview"]}",
+                // com.android.support:cardview-v7        https://mvnrepository.com/artifact/androidx.cardview/cardview
+                "androidx.cardview:cardview"                        : "androidx.cardview:cardview:1.0.0",
+                // android.arch.lifecycle:common          https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-common
+                // if using Java8, use the following instead of lifecycle-compiler
+                "androidx.lifecycle:lifecycle-common"               : "androidx.lifecycle:lifecycle-common:${lib_version["android_x_lifecycle"]}",
+                // android.arch.lifecycle:runtime         https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-runtime
+                // Lifecycles only (without ViewModel or LiveData)
+                "androidx.lifecycle:lifecycle-runtime"              : "androidx.lifecycle:lifecycle-runtime:${lib_version["android_x_lifecycle"]}",
+                // android.arch.lifecycle:viewmodel       https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel
+                "androidx.lifecycle:lifecycle-viewmodel"            : "androidx.lifecycle:lifecycle-viewmodel:${lib_version["android_x_lifecycle"]}",
+                // android.arch.lifecycle:livedata        https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata
+                "androidx.lifecycle:lifecycle-livedata"             : "androidx.lifecycle:lifecycle-livedata:${lib_version["android_x_lifecycle"]}",
+                // lifecycle view model savedstate
+                "androidx.lifecycle:lifecycle--viewmodel-savedstate": "androidx.lifecycle:lifecycle-viewmodel-savedstate:${lib_version["android_x_lifecycle"]}",
+                // android.arch.lifecycle:extensions      https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-extensions
+                "androidx.lifecycle:lifecycle-extensions"           : "androidx.lifecycle:lifecycle-extensions:${lib_version["android_x_lifecycle"]}",
+                // com.android.support:design             https://mvnrepository.com/artifact/com.google.android.material/material
+                "com.google.android.material:material"              : "com.google.android.material:material:1.2.1",
+                // https://mvnrepository.com/artifact/androidx.navigation/navigation-fragment-ktx
+                "androidx.navigation:navigation-fragment-ktx"       : "androidx.navigation:navigation-fragment-ktx:2.3.3",
+                // https://mvnrepository.com/artifact/androidx.navigation/navigation-ui-ktx
+                "androidx.navigation:navigation-ui-ktx"             : "androidx.navigation:navigation-ui-ktx:2.3.3",
+        ]
+
+        depends_kotlin = [
+                "org.jetbrains.kotlin:kotlin-stdlib"              : "org.jetbrains.kotlin:kotlin-stdlib:1.4.32",
+                "org.jetbrains.kotlin:kotlin-stdlib-jre7"         : "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.10",
+                // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
+                "org.jetbrains.kotlinx:kotlinx-coroutines-core"   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2",
+                // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-android
+                "org.jetbrains.kotlinx:kotlinx-coroutines-android": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2",
+        ]
+
+        test_depends = [
+                "junit:junit"                             : "junit:junit:4.12",
+                "androidx.test:core"                      : "androidx.test:core:1.3.0",
+                "org.mockito:mockito-core"                : "org.mockito:mockito-core:2.7.22",
+                "org.robolectric:robolectric"             : "org.robolectric:robolectric:4.4",
+                "org.robolectric:shadows-framework"       : "org.robolectric:shadows-framework:4.4",
+                "org.robolectric:shadows-multidex"        : "org.robolectric:shadows-multidex:4.4",
+                // deprecated
+                "org.robolectric:shadows-support-v4"      : "org.robolectric:shadows-support-v4:3.3.2",
+                "org.easymock:easymock"                   : "org.easymock:easymock:4.2",
+                "org.powermock:powermock-core"            : "org.powermock:powermock-core:2.0.9",
+                "org.powermock:powermock-module-junit4"   : "org.powermock:powermock-module-junit4:2.0.9",
+                "org.powermock:powermock-api-easymock"    : "org.powermock:powermock-api-easymock:2.0.9",
+                "com.squareup.okhttp3:logging-interceptor": "com.squareup.okhttp3:logging-interceptor:3.8.0@jar",
+        ]
+
+        android_test_depends = [
+                "androidx.test.ext:junit"                             : "androidx.test.ext:junit:1.1.2",
+                "androidx.test.espresso:espresso-core"                : "androidx.test.espresso:espresso-core:3.3.0",
+                "com.jayway.android.robotium:robotium-solo"           : "com.jayway.android.robotium:robotium-solo:5.5.4",
+                "com.android.support.test.uiautomator:uiautomator-v18": "com.android.support.test.uiautomator:uiautomator-v18:2.1.1",
+        ]
+
+        dagger_depends = [
+                // https://mvnrepository.com/artifact/com.google.dagger/dagger
+                "com.google.dagger:dagger"                : "com.google.dagger:dagger:${lib_version["dagger"]}",
+                "com.google.dagger:dagger-android"        : "com.google.dagger:dagger-android:${lib_version["dagger"]}",
+                "com.google.dagger:dagger-android-support": "com.google.dagger:dagger-android-support:${lib_version["dagger"]}",
+                "com.google.dagger:dagger-compiler"       : "com.google.dagger:dagger-compiler:${lib_version["dagger"]}",
+                // https://mvnrepository.com/artifact/com.google.dagger/hilt-android
+                "com.google.dagger:hilt-android"          : "com.google.dagger:hilt-android:${lib_version["dagger_hilt"]}",
+                "com.google.dagger:hilt-android-compiler" : "com.google.dagger:hilt-android-compiler:${lib_version["dagger_hilt"]}",
+        ]
+
+        depends_old = [
+                "com.android.support:support-annotations"         : "com.android.support:support-annotations:27.1.1",
+                "com.android.support:support-core-ui"             : "com.android.support:support-core-ui:27.1.1",
+                "com.android.support:support-v4"                  : "com.android.support:support-v4:27.1.1",
+                "com.android.support:appcompat-v7"                : "com.android.support:appcompat-v7:27.1.1",
+                "com.android.support:recyclerview-v7"             : "com.android.support:recyclerview-v7:27.1.1",
+                "com.android.support:cardview-v7"                 : "com.android.support:cardview-v7:27.1.1",
+                "com.android.support:design"                      : "com.android.support:design:27.1.1",
+                "com.android.support:multidex"                    : "com.android.support:multidex:1.0.1",
+                "com.android.support.constraint:constraint-layout": "com.android.support.constraint:constraint-layout:1.1.3",
+                "android.arch.lifecycle:runtime"                  : "android.arch.lifecycle:runtime:1.1.0",
+                "android.arch.lifecycle:extensions"               : "android.arch.lifecycle:extensions:1.1.0",
+        ]
+
+        public_repo = [
+                "aliyun"    : "http://maven.aliyun.com/nexus/content/groups/public/",
+                "jitpack_io": "https://jitpack.io",
+        ]
+    }
+}

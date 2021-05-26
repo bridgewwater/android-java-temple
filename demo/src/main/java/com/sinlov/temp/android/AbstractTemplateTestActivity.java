@@ -26,6 +26,8 @@ public abstract class AbstractTemplateTestActivity extends AppCompatActivity
         implements TempActivityAction, TempClickAction,
         TempHandlerAction, TempBundleAction, TempKeyboardAction, TempToastAction {
 
+    protected String TAG;
+
     /**
      * Activity 回调集合
      */
@@ -34,6 +36,7 @@ public abstract class AbstractTemplateTestActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TAG = this.getClass().getSimpleName();
         initActivity();
         initData(savedInstanceState);
     }

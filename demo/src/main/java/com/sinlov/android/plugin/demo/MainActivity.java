@@ -13,6 +13,8 @@ import com.sinlov.temp.android.utils.ClipboardUtils;
 
 import java.util.List;
 
+import timber.log.Timber;
+
 
 public class MainActivity extends AbsTemplateActivity {
 
@@ -35,6 +37,8 @@ public class MainActivity extends AbsTemplateActivity {
                 PMSUtil.selfAppName(this),
                 PMSUtil.isSelfDebug(this) ? "mode DEBUG" : "Release"
         ));
+
+        Timber.d("now TAG %s", TAG);
     }
 
     @Override

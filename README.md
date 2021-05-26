@@ -31,7 +31,7 @@ repo: [https://github.com/bridgewwater/android-java-temple](https://github.com/b
 | junit:junit:                   | 4.12    |
 | org.robolectric:robolectric    | 4.4     |
 
-more version see [package.gradle](package.gradle)
+more version see [config.gradle](config.gradle)
 
 ## warning
 
