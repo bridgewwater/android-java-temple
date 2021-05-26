@@ -73,6 +73,8 @@ subprojects {
                 "com.hjq:titlebar"                             : "com.hjq:titlebar:8.2",
                 // Gson 解析容错：https://github.com/getActivity/GsonFactory
                 "com.hjq.gson:factory"                         : "com.hjq.gson:factory:2.2",
+                // https://github.com/EastWoodYang/AutoQuickAdapter
+                "com.eastwood.common:auto-quick-adapter"       : "com.eastwood.common:auto-quick-adapter:1.0.4",
         ]
 
         depends_debug = [
