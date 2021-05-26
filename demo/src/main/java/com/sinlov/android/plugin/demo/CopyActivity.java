@@ -26,6 +26,10 @@ public class CopyActivity extends AbsTemplateActivity {
         Timber.d("now TAG %s", TAG);
         tvInfo = findViewById(R.id.tv_info);
         TextView tvResult = findViewById(R.id.tv_result);
+        setOnClickListener(
+                R.id.btn_init_check,
+                R.id.btn_biz
+        );
     }
 
     @Override
