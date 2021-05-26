@@ -120,7 +120,7 @@ dependencies {
     // implementation base
     implementation depends_android_x["androidx.annotation:annotation"],
 //            depends_android_x["androidx.legacy:legacy-support-v4"],
-//            depends_android_x["androidx.recyclerview:recyclerview"],
+            depends_android_x["androidx.recyclerview:recyclerview"],
 //            depends_android_x["androidx.cardview:cardview"],
 //            depends_android_x["com.google.android.material:material"],
             depends_android_x["androidx.appcompat:appcompat"]
@@ -128,6 +128,8 @@ dependencies {
     implementation depends["com.jakewharton.timber:timber"]
     implementation depends["com.hjq:xxpermissions"]
     implementation depends["com.hjq:toast"]
+// https://github.com/EastWoodYang/AutoQuickAdapter
+    implementation depends["com.eastwood.common:auto-quick-adapter"]
 
     if (isReleaseBuild()) {
         //todo release depends
