@@ -39,4 +39,19 @@ public interface TempToastAction {
         ToastUtils.setGravity(Gravity.BOTTOM, 0, 64);
         ToastUtils.show(object);
     }
+
+    default void toastTop(@StringRes int id) {
+        ToastUtils.setGravity(Gravity.TOP, 0, 64);
+        ToastUtils.show(id);
+    }
+
+    default void toastTop(CharSequence text) {
+        ToastUtils.setGravity(Gravity.TOP, 0, 64);
+        ToastUtils.show(text);
+    }
+
+    default void toastTop(Object object) {
+        ToastUtils.setGravity(Gravity.TOP, 0, 64);
+        ToastUtils.show(object);
+    }
 }
