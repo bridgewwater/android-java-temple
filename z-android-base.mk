@@ -6,7 +6,7 @@ ifndef ANDROID_HOME
 endif
 
 # init this project
-init: checkEnvAndroidHome
+init:
 	@$(ROOT_PWD)/gradlew clean buildEnvironment --warning-mode all
 
 cleanRoot:
