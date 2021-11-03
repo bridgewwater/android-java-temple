@@ -124,6 +124,11 @@ dependencies {
 //            depends_android_x["androidx.cardview:cardview"],
 //            depends_android_x["com.google.android.material:material"],
             depends_android_x["androidx.appcompat:appcompat"]
+
+    // glide
+//    annotationProcessor depends_annotation["com.github.bumptech.glide:compiler"]
+//    implementation depends["com.github.bumptech.glide:glide"]
+
     // implementation biz
     implementation depends["com.jakewharton.timber:timber"]
     implementation depends["com.hjq:xxpermissions"]

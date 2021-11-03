@@ -32,6 +32,10 @@ subprojects {
                 "dagger_hilt"           : "2.32-alpha",
         ]
 
+        depends_annotation = [
+                "com.github.bumptech.glide:compiler": "com.github.bumptech.glide:compiler:${lib_version["glide"]}",
+        ]
+
         depends = [
                 "com.jakewharton.timber:timber"                : "com.jakewharton.timber:timber:4.7.1",
                 "com.google.code.gson:gson"                    : "com.google.code.gson:gson:2.8.6",

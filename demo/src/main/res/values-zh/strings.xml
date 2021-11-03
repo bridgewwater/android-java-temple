@@ -1,3 +1,7 @@
 <resources>
+    <string name="app_name">android-java-temple</string>
+
+    <string name="toast_fast_request">请等待…</string>
+    <string name="dialog_fast_request">请等待…</string>
 
 </resources>
