@@ -66,9 +66,9 @@ public class MainActivity extends AbsTemplateActivity {
 
     private void requestFullPermission() {
         XXPermissions.with(MainActivity.this)
-//                .permission(Permission.MANAGE_EXTERNAL_STORAGE)
-                .permission(Permission.READ_EXTERNAL_STORAGE)
-                .permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .permission(Permission.MANAGE_EXTERNAL_STORAGE)
+//                .permission(Permission.READ_EXTERNAL_STORAGE)
+//                .permission(Permission.WRITE_EXTERNAL_STORAGE)
                 .request(new NeedPermissionCall());
     }
 
