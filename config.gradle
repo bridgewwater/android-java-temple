@@ -70,7 +70,7 @@ subprojects {
                 // doc https://github.com/Baseflow/PhotoView#usage https://mvnrepository.com/artifact/com.github.chrisbanes/PhotoView
                 "com.github.chrisbanes:PhotoView"              : "com.github.chrisbanes:PhotoView:2.3.0",
                 // 权限请求框架：https://github.com/getActivity/XXPermissions
-                "com.hjq:xxpermissions"                        : "com.hjq:xxpermissions:9.8",
+                "com.hjq:xxpermissions"                        : "com.hjq:xxpermissions:10.6",
                 // https://github.com/getActivity/ToastUtils
                 "com.hjq:toast"                                : "com.hjq:toast:8.8",
                 // https://github.com/getActivity/TitleBar

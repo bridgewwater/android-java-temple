@@ -54,7 +54,7 @@ public class MainActivity extends AbsTemplateActivity {
         } else if (id == R.id.btn_skip_to_module) {
             toast("Skip to module");
         } else if (id == R.id.btn_skip_app_details) {
-            XXPermissions.startApplicationDetails(this);
+            XXPermissions.startPermissionActivity(this);
         } else if (id == R.id.btn_grant_permission) {
             requestFullPermission();
         } else if (id == R.id.tv_result) {

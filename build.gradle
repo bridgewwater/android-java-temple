@@ -44,6 +44,7 @@ allprojects {
 //        }
         // public java and android repository
 //        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+//        maven { url 'https://jitpack.io' }
         mavenCentral()
         // jcenter()
         google()
