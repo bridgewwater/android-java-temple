@@ -15,6 +15,7 @@ import timber.log.Timber;
 public class CopyActivity extends AbsTemplateActivity {
 
     private TextView tvInfo;
+    private TextView tvResult;
 
     @Override
     protected int getLayoutId() {
@@ -25,7 +26,6 @@ public class CopyActivity extends AbsTemplateActivity {
     protected void initView() {
         Timber.d("now TAG %s", TAG);
         tvInfo = findViewById(R.id.tv_info);
-        TextView tvResult = findViewById(R.id.tv_result);
         setOnClickListener(
                 R.id.btn_init_check,
                 R.id.btn_biz
@@ -54,5 +54,6 @@ public class CopyActivity extends AbsTemplateActivity {
         }
         tvInfo.setText(info);
         Timber.d("showInfo: %s", info);
+        tvResult.setText("");
     }
 }
