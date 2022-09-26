@@ -1,4 +1,6 @@
 # android-java-temple
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbridgewwater%2Fandroid-java-temple.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbridgewwater%2Fandroid-java-temple?ref=badge_shield)
+
 
 for android temple of project write as java
 
@@ -38,3 +40,6 @@ more version see [config.gradle](config.gradle)
 if application use [view binding](https://developer.android.com/topic/libraries/view-binding)
 
 if can not found databinding class, just use `File -> Invalidate Caches / Just Restart`
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbridgewwater%2Fandroid-java-temple.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbridgewwater%2Fandroid-java-temple?ref=badge_large)
