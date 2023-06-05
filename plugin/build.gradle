@@ -1,9 +1,4 @@
 apply plugin: 'com.android.library'
-// uploadArchives
-apply from: rootProject.file("gradle/maven/publishUpload.gradle")
-// jacoco android library
-apply from: rootProject.file("gradle/jacoco/jacoco-android-library.gradle")
-
 
 android {
     compileSdkVersion cfg_android["compileSdkVersion"]
@@ -97,3 +92,8 @@ dependencies {
         //todo snapshot depends
     }
 }
+
+// uploadArchives
+apply from: rootProject.file("gradle/maven/publishUpload.gradle")
+// jacoco android library
+apply from: rootProject.file("gradle/jacoco/jacoco-android-library.gradle")

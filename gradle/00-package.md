@@ -6,7 +6,7 @@
 
 ## config depend
 
-add `package.gradle` at root of project
+add `config.gradle` at root of project
 
 ```gradle
 subprojects {
@@ -55,7 +55,7 @@ subprojects {
 `in root build.gradle`
 
 ```gradle
-apply from: rootProject.file("package.gradle")
+apply from: rootProject.file("config.gradle")
 ```
 
 ## use project center dependencies
@@ -85,7 +85,7 @@ dependencies {
 
 ## add new dependencies
 
-in node of `package.gradle`
+in node of `config.gradle`
 
 ```gradle
 ...

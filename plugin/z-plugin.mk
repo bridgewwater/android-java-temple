@@ -22,6 +22,12 @@ pluginTestDebug:
 pluginTestRelease: pluginClean
 	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):testReleaseUnitTest
 
+pluginJacocoReportDebug:
+	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):jacocoDebugReport
+
+pluginJacocoReportRelease:
+	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):jacocoReleaseReport
+
 pluginDebug:
 	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):buildDebug
 
@@ -53,11 +59,13 @@ help-plugin:
 	@echo "make $(ROOT_MODULE_plugin)Test                          ~> run test of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)TestDebug                     ~> run test Debug of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)TestRelease                   ~> run test Release of module [ $(ROOT_MODULE_plugin) ]"
+	@echo "make $(ROOT_MODULE_plugin)JacocoReportDebug             ~> run report jacoco debug of module [ $(ROOT_MODULE_plugin) ]"
+	@echo "make $(ROOT_MODULE_plugin)JacocoReportRelease           ~> run report jacoco release of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)Debug                         ~> build debug of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)Release                       ~> build release of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)AssembleDebug                 ~> assemble debug of module [ :$(ROOT_MODULE_plugin):assembleDebug ]"
 	@echo "make $(ROOT_MODULE_plugin)AssembleRelease               ~> assemble release of module [ :$(ROOT_MODULE_plugin):assembleRelease ]"
-	@echo "make $(ROOT_MODULE_plugin)UploadArchives                ~> module [ :$(ROOT_MODULE_plugin):uploadArchives ] deprecated by plugin maven"
-	@echo "make $(ROOT_MODULE_plugin)Publish                       ~> module [ :$(ROOT_MODULE_plugin):publish ]"
-	@echo "make $(ROOT_MODULE_plugin)pluginPublishToMavenLocal     ~> module [ :$(ROOT_MODULE_plugin):publishToMavenLocal ]"
+	@echo "make $(ROOT_MODULE_plugin)UploadArchives                ~> module [ :$(ROOT_MODULE_plugin):uploadArchives ] deprecated by at gradle 7.+"
+	@echo "make $(ROOT_MODULE_plugin)Publish                       ~> module [ :$(ROOT_MODULE_plugin):publish ] effect at gradle 7.+"
+	@echo "make $(ROOT_MODULE_plugin)pluginPublishToMavenLocal     ~> module [ :$(ROOT_MODULE_plugin):publishToMavenLocal ] effect at gradle 7.+"
 	@echo ""
