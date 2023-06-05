@@ -59,7 +59,7 @@ android.applicationVariants.all { variant ->
 //        executionData file("${buildDir}/jacoco/test${variantName}UnitTest.exec")
         reports {
 //            csv.enabled = false
-            csv.required.set(false)
+            csv.required.set(true)
             xml.required.set(true)
             xml.setDestination(file("${buildDir}/reports/jacoco/report.xml"))
             html.required.set(true)

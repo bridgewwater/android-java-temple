@@ -50,7 +50,7 @@ android.libraryVariants.all { variant ->
 
         reports {
 //            csv.enabled = false
-            csv.required.set(false)
+            csv.required.set(true)
             xml.required.set(true)
             xml.setDestination(file("${buildDir}/reports/jacoco/report.xml"))
             html.required.set(true)
