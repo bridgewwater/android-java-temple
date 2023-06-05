@@ -2,7 +2,7 @@
 
 ## notes
 
-- use `nexusUpload` must after setting plugin
+- use `publishUpload` must after setting plugin
 - `only use in module build.gradle`
 - nexus must in `apply plugin: 'com.android.library'`
 - nexus Server `just has nexus server`
@@ -115,18 +115,22 @@ android {
 
 ...
 // uploadArchives
-apply from: rootProject.file("gradle/maven/nexusUpload.gradle")
+apply from: rootProject.file("gradle/maven/publishUpload.gradle")
 ```
 
 # nexus upload
 
+`publishToMavenLocal` will publish local maven `$HOME/.m2/repository/`
+
 run
 
-    $ gradlew uploadArchives
+    $ gradlew publishToMavenLocal
+    $ gradlew publish
 
 or
 
-    $ gradlew :[module]:uploadArchives
+    $ gradlew :[module]:publishToMavenLocal
+    $ gradlew :[module]:publish
 
 > if `VERSION_NAME contains SNAPSHOT` this project will archive to snapshots which archive to
 > releases not chants

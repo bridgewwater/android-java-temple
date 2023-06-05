@@ -34,6 +34,13 @@ pluginAssembleDebug: pluginClean
 pluginAssembleRelease: pluginClean
 	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):assembleRelease
 
+pluginPublishToMavenLocal:
+	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):publishToMavenLocal
+	$(info will publish at $$HOME/.m2/repository)
+
+pluginPublish:
+	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):publish
+
 pluginUploadArchives: pluginClean
 	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):uploadArchives
 
@@ -50,5 +57,7 @@ help-plugin:
 	@echo "make $(ROOT_MODULE_plugin)Release                       ~> build release of module [ $(ROOT_MODULE_plugin) ]"
 	@echo "make $(ROOT_MODULE_plugin)AssembleDebug                 ~> assemble debug of module [ :$(ROOT_MODULE_plugin):assembleDebug ]"
 	@echo "make $(ROOT_MODULE_plugin)AssembleRelease               ~> assemble release of module [ :$(ROOT_MODULE_plugin):assembleRelease ]"
-	@echo "make $(ROOT_MODULE_plugin)UploadArchives                ~> module [ :$(ROOT_MODULE_plugin):uploadArchives ]"
+	@echo "make $(ROOT_MODULE_plugin)UploadArchives                ~> module [ :$(ROOT_MODULE_plugin):uploadArchives ] deprecated by plugin maven"
+	@echo "make $(ROOT_MODULE_plugin)Publish                       ~> module [ :$(ROOT_MODULE_plugin):publish ]"
+	@echo "make $(ROOT_MODULE_plugin)pluginPublishToMavenLocal     ~> module [ :$(ROOT_MODULE_plugin):publishToMavenLocal ]"
 	@echo ""

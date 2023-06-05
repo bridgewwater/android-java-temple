@@ -1,5 +1,7 @@
+// https://docs.gradle.org/current/userguide/checkstyle_plugin.html#header
 apply plugin: "checkstyle"
 
+// https://docs.gradle.org/7.2/userguide/checkstyle_plugin.html#header
 checkstyle.toolVersion = 7.3
 
 String getCheckstyleConfig() {
@@ -36,7 +38,7 @@ android.libraryVariants.all { variant ->
         description "Generate ${variantName} Checkstyle reports."
 
         ignoreFailures = true
-        reports.html.enabled = true
+        reports.html.required = true
 
         configFile = file("${rootDir}/gradle/checkstyle/checkstyle-easy.xml")
         source = files(android.sourceSets.main.java.srcDirs)

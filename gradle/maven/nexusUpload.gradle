@@ -95,10 +95,13 @@ boolean isStringEmpty(str) {
 }
 
 boolean isReleaseBuild() {
-    return VERSION_NAME.contains("SNAPSHOT") == false
+    return getVersionName().contains("SNAPSHOT") == false
 }
 
 String getVersionName() {
+    if (!isStringEmpty(System.getenv('NEXUS_VERSION_NAME'))) {
+        return System.getenv('NEXUS_VERSION_NAME')
+    }
     if (hasProperty('VERSION_NAME')) {
         return VERSION_NAME
     } else {

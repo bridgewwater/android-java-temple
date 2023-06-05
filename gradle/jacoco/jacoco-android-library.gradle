@@ -28,6 +28,8 @@ def excludes_base = [
 
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
+    // form https://medium.com/@rafael_toledo/setting-up-an-unified-coverage-report-in-android-with-jacoco-robolectric-and-espresso-ffe239aaf3fa
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 jacoco {
@@ -47,10 +49,11 @@ android.libraryVariants.all { variant ->
 
 
         reports {
-            csv.enabled = false
-            xml.enabled = true
+//            csv.enabled = false
+            csv.required.set(false)
+            xml.required.set(true)
             xml.setDestination(file("${buildDir}/reports/jacoco/report.xml"))
-            html.enabled = true
+            html.required.set(true)
             html.setDestination(file("$buildDir/reports/jacocoHtml"))
         }
         def codeTree = fileTree(

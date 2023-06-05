@@ -1,27 +1,23 @@
 /**
- * You can use checkMavenModuleConfig at module project for check
+ * You can use checkNexusModuleConfig at module project for check
  *
  * <pre>
- *     task clean(type: Delete) {*          checkMavenModuleConfig()
+ *     task clean(type: Delete) {*          checkNexusModuleConfig()
  *          delete project.buildDir
  *}* </pre>
  * https://docs.gradle.org/6.5/userguide/upgrading_version_5.html#legacy_publication_system_is_deprecated_and_replaced_with_the_publish_plugins
- * Gradle 4.8 use maven-publish
- *
+ * Gradle 4.8 use maven-publish, and gradle 7.x remove maven
  */
 
-apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-def checkMavenModuleConfig() {
+def checkNexusModuleConfig() {
     String versionName = getVersionName()
     int versionCode = getVersionCode()
     String groupSet = getGroupSet()
     String pomArtifactId = getPomArtifactId()
     String pomName = getPomName()
-    String repositoryUsername = getRepositoryUsername()
-    String repositoryPassword = getRepositoryPassword()
     String releaseRepositoryUrl = getReleaseRepositoryUrl()
     String snapshotRepositoryUrl = getSnapshotRepositoryUrl()
     String pomPackaging = getPomPackaging()
@@ -32,14 +28,13 @@ def checkMavenModuleConfig() {
     String pomLicenceDist = getPomLicenceDist()
     String pomDescription = getPomDescription()
     if (
-    isStringEmpty(versionName) || versionCode == 0 || isStringEmpty(groupSet) ||
-            isStringEmpty(pomArtifactId) || isStringEmpty(pomName) ||
-            isStringEmpty(repositoryUsername) || isStringEmpty(repositoryPassword)
+            isStringEmpty(versionName) || versionCode == 0 || isStringEmpty(groupSet) ||
+                    isStringEmpty(pomArtifactId) || isStringEmpty(pomName)
     ) {
-        throw new IllegalArgumentException("checkMavenModuleConfig error, please check log!")
+        throw new IllegalArgumentException("checkNexusModuleConfig error, please check log!")
     } else {
         def sb = new StringBuffer()
-        sb.append("checkMavenModuleConfig at module [ ")
+        sb.append("checkNexusModuleConfig at module [ ")
         sb.append(project.name)
         sb.append(" ] success!")
         sb.append("\n\t versionName: ")
@@ -52,8 +47,10 @@ def checkMavenModuleConfig() {
         sb.append(pomArtifactId)
         sb.append("\n\t pomName: ")
         sb.append(pomName)
-        sb.append("\n\t nexus_username: ")
-        sb.append(repositoryUsername)
+        if (!isStringEmpty(getRepositoryUsername())) {
+            sb.append("\n\t nexusName: ")
+            sb.append(getRepositoryUsername())
+        }
         if (isReleaseBuild()) {
             sb.append("\n\t buildType: release")
             sb.append("\n\t releaseRepositoryUrl: ")
@@ -100,10 +97,13 @@ boolean isStringEmpty(str) {
 }
 
 boolean isReleaseBuild() {
-    return VERSION_NAME.contains("SNAPSHOT") == false
+    return getVersionName().contains("SNAPSHOT") == false
 }
 
 String getVersionName() {
+    if (!isStringEmpty(System.getenv('NEXUS_VERSION_NAME'))) {
+        return System.getenv('NEXUS_VERSION_NAME')
+    }
     if (hasProperty('VERSION_NAME')) {
         return VERSION_NAME
     } else {
@@ -148,33 +148,82 @@ String getPomName() {
     }
 }
 
+String getPomURL() {
+    if (hasProperty('POM_URL')) {
+        return POM_URL
+    } else {
+        printErrorGradlePropertiesNotSet('POM_URL')
+        return ""
+    }
+}
+
+String getSCMURL() {
+    if (hasProperty('POM_SCM_URL')) {
+        return POM_SCM_URL
+    } else {
+        printErrorGradlePropertiesNotSet('POM_SCM_URL')
+        return ""
+    }
+}
+
+String getPomSCMConnection() {
+    if (hasProperty('POM_SCM_CONNECTION')) {
+        return POM_SCM_CONNECTION
+    } else {
+        printErrorGradlePropertiesNotSet('POM_SCM_CONNECTION')
+        return ""
+    }
+}
+
+String getPomSCMDevConnection() {
+    if (hasProperty('POM_SCM_DEV_CONNECTION')) {
+        return POM_SCM_DEV_CONNECTION
+    } else {
+        printErrorGradlePropertiesNotSet('POM_SCM_DEV_CONNECTION')
+        return ""
+    }
+}
+
 String getPomPackaging() {
     return hasProperty('POM_PACKAGING') ? POM_PACKAGING : "aar"
 }
 
 String getReleaseRepositoryUrl() {
-    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : "file://${project.rootDir}/mvn-repo/release"
+    if (!isStringEmpty(System.getenv('RELEASE_REPOSITORY_URL'))) {
+        return System.getenv('RELEASE_REPOSITORY_URL')
+    } else {
+        return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL : "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+    }
+
 }
 
 String getSnapshotRepositoryUrl() {
-    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : "file://${project.rootDir}/mvn-repo/snapshots/"
-}
-
-String getRepositoryUsername() {
-    if (hasProperty('NEXUS_USERNAME')) {
-        return NEXUS_USERNAME
+    if (!isStringEmpty(System.getenv('SNAPSHOT_REPOSITORY_URL'))) {
+        return System.getenv('SNAPSHOT_REPOSITORY_URL')
     } else {
-        printErrorGradlePropertiesNotSet('NEXUS_USERNAME')
-        return ""
+        return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL : "https://oss.sonatype.org/content/repositories/snapshots"
     }
 }
 
-String getRepositoryPassword() {
-    if (hasProperty('NEXUS_PASSWORD')) {
-        return NEXUS_PASSWORD
+String getRepositoryUsername() {
+    if (!isStringEmpty(System.getenv('NEXUS_USERNAME'))) {
+        return System.getenv('NEXUS_USERNAME')
     } else {
-        printErrorGradlePropertiesNotSet('NEXUS_PASSWORD')
-        return ""
+        return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+    }
+    // if (hasProperty('NEXUS_USERNAME')) {
+    //     return NEXUS_USERNAME
+    // } else {
+    //     printErrorGradlePropertiesNotSet('NEXUS_USERNAME')
+    //     return ""
+    // }
+}
+
+String getRepositoryPassword() {
+    if (!isStringEmpty(System.getenv('NEXUS_PASSWORD'))) {
+        return System.getenv('NEXUS_PASSWORD')
+    } else {
+        return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
     }
 }
 
@@ -202,82 +251,142 @@ String getPomDescription() {
     return hasProperty('POM_DESCRIPTION') ? POM_DESCRIPTION : "default_pom_description"
 }
 
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
-group = this.getGroupSet()
-version = this.getVersionName()
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = this.getGroupSet()
-            artifactId = this.getPomArtifactId()
-            version = this.getVersionName()
-
-            from components.java
-            versionMapping {
-                usage('java-api') {
-                    fromResolutionOf('runtimeClasspath')
-                }
-                usage('java-runtime') {
-                    fromResolutionResult()
-                }
-            }
-            pom {
-                name = this.getPomName()
-                description = this.getPomDescription()
-                developers {
-                    developer {
-                        id this.getPomDeveloperId()
-                        name this.getPomDeveloperName()
-//                        email = ''
-                    }
-                }
-
-                licenses {
-                    license {
-                        name this.getPomLicenceName()
-                        url this.getPomLicenceUrl()
-//                        distribution this.getPomLicenceDist()
-                    }
-                }
-//                scm {
-//                    connection = 'scm:git:git://example.com/my-library.git'
-//                    developerConnection = 'scm:git:ssh://example.com/my-library.git'
-//                    url = 'http://example.com/my-library/'
-//                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            url = this.getVersionName().endsWith('SNAPSHOT') ? this.getSnapshotRepositoryUrl() : this.getReleaseRepositoryUrl()
-            credentials {
-                username = this.getRepositoryUsername()
-                password = this.getRepositoryPassword()
-            }
-            authentication {
-                basic(BasicAuthentication)
-            }
-        }
-    }
-}
-
 signing {
-    sign publishing.publications.mavenJava
+    required { isReleaseBuild() && gradle.taskGraph.hasTask("publishing") }
+    println 'Signing archives...'
+    sign configurations.archives
 }
 
-javadoc {
-    if (JavaVersion.current().isJava8Compatible()) {
-        options.addBooleanOption('html5', true)
+afterEvaluate { project ->
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = this.getGroupSet()
+                artifactId = this.getPomArtifactId()
+                version = this.getVersionName()
+                pom {
+                    url = this.getPomURL()
+                    groupId = this.getGroupSet()
+                    artifactId = this.getPomArtifactId()
+                    version = this.getVersionName()
+                    packaging = this.getPomPackaging()
+                    description = this.getPomDescription()
+                    scm {
+                        url = this.getPomURL()
+                        connection = this.getPomSCMConnection()
+                        developerConnection = this.getPomSCMDevConnection()
+                    }
+
+                    developers {
+                        developer {
+                            id = this.getPomDeveloperId()
+                            name = this.getPomDeveloperName()
+//                            email = this.getPomDeveloperEmail()
+                        }
+                    }
+
+                    licenses {
+                        license {
+                            name = this.getPomLicenceName()
+                            url = this.getPomLicenceUrl()
+                            distribution = this.getPomLicenceDist()
+                        }
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                def repo_url = this.isReleaseBuild() ? this.getReleaseRepositoryUrl() : this.getSnapshotRepositoryUrl()
+                url = repo_url
+                authentication {
+                    basic(BasicAuthentication)
+                }
+                credentials(PasswordCredentials) {
+                    username this.getRepositoryUsername()
+                    password this.getRepositoryPassword()
+                }
+            }
+        }
     }
 }
+
+task androidJavadocs(type: Javadoc) {
+    options {
+        encoding "UTF-8"
+        links "http://docs.oracle.com/javase/8/docs/api/"
+        linksOffline "http://d.android.com/reference", "${android.sdkDirectory}/docs/reference"
+    }
+    exclude '**/BuildConfig.java'
+    exclude '**/R.java'
+}
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+//        archiveClassifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+//        archiveClassifier = 'sources'
+    from android.sourceSets.main.java.sourceFiles
+}
+
+task makeReleaseJar(type: Jar, dependsOn: "bundleRelease") {
+    from file('build/intermediates/classes/release')
+    archiveFileName = "${project.name}.jar"
+    destinationDirectory = file('build/libs')
+
+    //exclude class
+    exclude "**/**/BuildConfig.class"
+    exclude "**/**/BuildConfig\$*.class"
+    exclude "**/R.class"
+    exclude "**/R\$*.class"
+
+    //include class
+//        include "com/test/**/*.class"
+}
+
+task androidrReleaseEclipse(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    exclude 'build/intermediates/bundles/release/aapt'
+    into('build/eclipse/')
+    include('classes.jar')
+    include('res/')
+    include('jni/')
+    include('libs/')
+    include('aidl/')
+    include('assets/')
+    include('R.txt')
+    rename('classes.jar', "${project.name}-release.jar")
+}
+
+task androidReleaseEclipseZip(type: Zip, dependsOn: androidrReleaseEclipse) {
+    classifier = 'eclipse'
+    from "${project.buildDir}/eclipse/"
+}
+
+artifacts {
+    checkNexusModuleConfig()
+    archives androidSourcesJar
+    archives androidJavadocsJar
+//        archives androidReleaseEclipseZip
+    if (getPomPackaging().equals('jar')) {
+        archives makeReleaseJar
+        "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+    } else if (getPomPackaging().equals('eclipse')) {
+        archives makeReleaseJar
+        archives androidReleaseEclipseZip
+        "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+    } else {
+        "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+    }
+}
+
 
 ext {
-    checkMavenModuleConfig = this.&checkMavenModuleConfig
+    checkNexusModuleConfig = this.&checkNexusModuleConfig
 //    getPomArtifactId = this.&getPomArtifactId
 //    getPomName = this.&getPomName
 //    getPomPackaging = this.&getPomPackaging
