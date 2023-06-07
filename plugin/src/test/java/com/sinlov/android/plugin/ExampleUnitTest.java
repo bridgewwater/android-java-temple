@@ -1,8 +1,13 @@
 package com.sinlov.android.plugin;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+
+import com.github.javafaker.Faker;
+
+import java.util.Locale;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -13,5 +18,16 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void faker_data() throws Exception {
+        // mock
+        Faker faker = new Faker(new Locale("zh-CN"));
+        // do
+        String fullName = faker.name().fullName();
+        System.out.println("fullName = " + fullName);
+        // verify
+        Assert.assertNotNull(fullName);
     }
 }

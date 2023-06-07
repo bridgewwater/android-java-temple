@@ -103,6 +103,7 @@ dependencies {
             test_depends["org.powermock:powermock-module-junit4"],
             // PowerMock + EasyMock extension
             test_depends["org.powermock:powermock-api-easymock"]
+    testImplementation test_depends["com.github.javafaker:javafaker"]
 
     androidTestImplementation android_test_depends["androidx.test.ext:junit"],
             android_test_depends["androidx.test.espresso:espresso-core"]

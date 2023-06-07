@@ -70,6 +70,7 @@ dependencies {
             test_depends["org.powermock:powermock-module-junit4"],
             // PowerMock + EasyMock extension
             test_depends["org.powermock:powermock-api-easymock"]
+    testImplementation test_depends["com.github.javafaker:javafaker"]
 
     //    androidTestCompile android_test_depends.robotium_solo
     // test end
