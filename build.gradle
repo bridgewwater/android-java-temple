@@ -29,6 +29,7 @@ buildscript {
 allprojects {
 
     repositories {
+        mavenLocal()
         // for custom android repository
 //        maven { url LIB_CUSTOM_ANDROID_REPOSITORY_URL }
 
@@ -39,8 +40,8 @@ allprojects {
 //            maven { url REPO_SNAPSHOT_REPOSITORY_URL }
 //        }
         // public java and android repository
-//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
 //        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         mavenCentral()
         google()
     }
