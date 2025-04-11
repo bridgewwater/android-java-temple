@@ -8,10 +8,10 @@ repo: [https://github.com/bridgewwater/android-java-temple](https://github.com/b
 
 | item           | version |
 | :------------- |:--------|
-| jdk            | 1.11+   |
-| gradle         | 7.4+    |
-| android studio | 2021    |
+| jdk            | 1.11   |
+| gradle         | 7.4    |
 | com.android.tools.build:gradle | 7.1.3   |
+| android studio | 2021    |
 | android build tools | 32.0.0  |
 | android compile sdk | 32      |
 | android min sdk | 23      |
