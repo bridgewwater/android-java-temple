@@ -2,53 +2,53 @@
 ROOT_MODULE_plugin := plugin
 
 pluginTasks:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):tasks
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):tasks
 
 pluginClean:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):clean
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):clean
 
 pluginDependImplementation:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):dependencies --configuration implementation
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):dependencies --configuration implementation
 
 pluginDependReleaseCompileClasspath:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):dependencies --configuration releaseCompileClasspath
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):dependencies --configuration releaseCompileClasspath
 
 pluginTest:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):test
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):test
 
 pluginTestDebug:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):testDebugUnitTest
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):testDebugUnitTest
 
 pluginTestRelease: pluginClean
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):testReleaseUnitTest
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):testReleaseUnitTest
 
 pluginJacocoReportDebug:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):jacocoDebugReport
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):jacocoDebugReport
 
 pluginJacocoReportRelease:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):jacocoReleaseReport
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):jacocoReleaseReport
 
 pluginDebug:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):buildDebug
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):buildDebug
 
 pluginRelease:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):build
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):build
 
 pluginAssembleDebug: pluginClean
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):assembleDebug
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):assembleDebug
 
 pluginAssembleRelease: pluginClean
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):assembleRelease
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):assembleRelease
 
 pluginPublishToMavenLocal:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):publishToMavenLocal
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):publishToMavenLocal
 	$(info will publish at $$HOME/.m2/repository)
 
 pluginPublish:
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):publish
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):publish
 
 pluginUploadArchives: pluginClean
-	$(ROOT_PWD)/gradlew -q $(ROOT_MODULE_plugin):uploadArchives
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):uploadArchives
 
 help-plugin:
 	@echo "=> ${ROOT_PWD}/${ROOT_MODULE_plugin}/z-plugin.mk : android library module [ $(ROOT_MODULE_plugin) ] task"

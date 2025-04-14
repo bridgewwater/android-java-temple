@@ -7,5 +7,5 @@ include plugin/z-plugin.mk
 include demo/z-demo.mk
 
 .PHONY: help
-help: helpAndroidBase help-plugin help-demo
+help: help-plugin help-demo help.android.base
 	@echo "more task see Makefile!"

@@ -5,31 +5,31 @@ ROOT_APP_LAUNCHER_ACTIVITY_demo := com.sinlov.android.plugin.demo.MainActivity
 ROOT_APP_LANCHER_PARAMS_demo :="-a android.intent.action.MAIN -c android.intent.category.LAUNCHER"
 
 demoClean:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):clean
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):clean
 
 demoDependImplementation:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):dependencies --configuration implementation
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):dependencies --configuration implementation
 
 demoDependReleaseCompileClasspath:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):dependencies --configuration releaseCompileClasspath
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):dependencies --configuration releaseCompileClasspath
 
 demoTest:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):test
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):test
 
 demoDebug:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):buildDebug
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):buildDebug
 
 demoRelease:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):buildRelease
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):buildRelease
 
 demoAssembleDebug:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):assembleDebug
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):assembleDebug
 
 demoAssembleRelease: demoRelease
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):assembleRelease
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):assembleRelease
 
 demoInstallDebug:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):installDebug
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):installDebug
 
 demoLaunch:
 	@adb shell am start -n ${ROOT_APP_PACKAGE_demo}/${ROOT_APP_LAUNCHER_ACTIVITY_demo} ${ROOT_APP_LANCHER_PARAMS_demo}
@@ -38,7 +38,7 @@ demoLaunchDebug: demoInstallDebug demoLaunch
 	@echo "has launch ${ROOT_PWD}/${ROOT_APP_NAME_demo} as: ${ROOT_APP_PACKAGE_demo}/${ROOT_APP_LAUNCHER_ACTIVITY_demo}"
 
 demoInstallRelease:
-	$(ROOT_PWD)/gradlew -q $(ROOT_APP_NAME_demo):installRelease
+	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_APP_NAME_demo):installRelease
 
 demoLaunchRelease: demoInstallRelease demoLaunch
 	@echo "has launch ${ROOT_PWD}/${ROOT_APP_NAME_demo} as: ${ROOT_APP_PACKAGE_demo}/${ROOT_APP_LAUNCHER_ACTIVITY_demo}"
