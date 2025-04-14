@@ -91,7 +91,7 @@ dependencies {
     testImplementation test_depends["junit:junit"],
             // Mockito
             test_depends["org.mockito:mockito-core"],
-            // Robolectric
+            // Robolectric https://github.com/robolectric/robolectric
             test_depends["org.robolectric:robolectric"],
             test_depends["androidx.test:core"],
             // deprecated

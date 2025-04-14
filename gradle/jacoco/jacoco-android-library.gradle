@@ -1,7 +1,7 @@
 // https://www.eclemma.org/jacoco/
 apply plugin: 'jacoco'
 
-def jacoco_version = "0.8.6"
+def jacoco_version = "0.8.8"
 
 def excludes_base = [
         '**/R.class',

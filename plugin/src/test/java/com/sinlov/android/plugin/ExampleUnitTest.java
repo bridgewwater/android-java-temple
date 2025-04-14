@@ -20,6 +20,12 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
+//    @Test
+//    public void plugin() {
+//        Plugin instance = Plugin.getInstance();
+//        Assert.assertNotNull(instance);
+//    }
+
     @Test
     public void faker_data() throws Exception {
         // mock
