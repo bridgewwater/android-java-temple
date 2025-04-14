@@ -46,7 +46,7 @@ clean.build.catch:
 clean: clean.root
 
 .PHONY: clean.all
-clean.all: clean.root clean.idea
+clean.all: clean.root clean.idea clean.build.catch
 	@echo "clean all done"
 
 .PHONY: adb.crash
