@@ -9,6 +9,8 @@ endif
 env:
 	@echo "================ env start ================"
 	@echo "ROOT_PWD                         ${ROOT_PWD}"
+	@echo "ENV_HOME_PATH                    ${ENV_HOME_PATH}"
+	@echo ""
 	@echo "ENV_GRADLE_WRAPPER_EXEC          ${ENV_GRADLE_WRAPPER_EXEC}"
 	@echo "================ env end ================"
 	@echo ""

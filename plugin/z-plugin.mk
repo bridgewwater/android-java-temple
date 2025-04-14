@@ -55,16 +55,18 @@ pluginAssembleRelease: pluginClean
 
 .PHONY: pluginPublishToMavenLocal
 pluginPublishToMavenLocal:
+	$(info "-> this task effect at gradle 7.+")
 	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):publishToMavenLocal
-	$(info will publish at $$HOME/.m2/repository)
+ifeq ($(OS),Windows_NT)
+	$(info will publish at: $$env:USERPROFILE\.m2\repository)
+else
+	$(info will publish at: $$HOME/.m2/repository)
+endif
+
 
 .PHONY: pluginPublish
 pluginPublish:
 	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):publish
-
-.PHONY: pluginUploadArchives
-pluginUploadArchives: pluginClean
-	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):uploadArchives
 
 .PHONY: help-plugin
 help-plugin:

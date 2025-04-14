@@ -300,12 +300,14 @@ afterEvaluate { project ->
             maven {
                 def repo_url = this.isReleaseBuild() ? this.getReleaseRepositoryUrl() : this.getSnapshotRepositoryUrl()
                 url = repo_url
-                authentication {
-                    basic(BasicAuthentication)
-                }
-                credentials(PasswordCredentials) {
-                    username this.getRepositoryUsername()
-                    password this.getRepositoryPassword()
+                if (!repo_url.startsWith("file://")) {
+                    authentication {
+                        basic(BasicAuthentication)
+                    }
+                    credentials(PasswordCredentials) {
+                        username this.getRepositoryUsername()
+                        password this.getRepositoryPassword()
+                    }
                 }
             }
         }

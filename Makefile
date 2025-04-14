@@ -2,9 +2,11 @@
 
 ifeq ($(OS),Windows_NT)
   ROOT_PWD=$(shell powershell -Command '(Get-Location).Path')
+  ENV_HOME_PATH?=$(shell powershell -Command '$$HOME')
   ENV_GRADLE_WRAPPER_EXEC=.\gradlew.bat
 else
   ROOT_PWD=$(shell pwd)
+  ENV_HOME_PATH?=${HOME}
   ENV_GRADLE_WRAPPER_EXEC=./gradlew
 endif
 
