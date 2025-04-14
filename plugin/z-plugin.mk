@@ -63,7 +63,6 @@ else
 	$(info will publish at: $$HOME/.m2/repository)
 endif
 
-
 .PHONY: pluginPublish
 pluginPublish:
 	${ENV_GRADLE_WRAPPER_EXEC} -q $(ROOT_MODULE_plugin):publish
@@ -86,5 +85,5 @@ help-plugin:
 	@echo "make $(ROOT_MODULE_plugin)AssembleRelease               ~> assemble release of module [ :$(ROOT_MODULE_plugin):assembleRelease ]"
 	@echo "make $(ROOT_MODULE_plugin)UploadArchives                ~> module [ :$(ROOT_MODULE_plugin):uploadArchives ] deprecated by at gradle 7.+"
 	@echo "make $(ROOT_MODULE_plugin)Publish                       ~> module [ :$(ROOT_MODULE_plugin):publish ] effect at gradle 7.+"
-	@echo "make $(ROOT_MODULE_plugin)pluginPublishToMavenLocal     ~> module [ :$(ROOT_MODULE_plugin):publishToMavenLocal ] effect at gradle 7.+"
+	@echo "make $(ROOT_MODULE_plugin)PublishToMavenLocal           ~> module [ :$(ROOT_MODULE_plugin):publishToMavenLocal ] effect at gradle 7.+"
 	@echo ""
