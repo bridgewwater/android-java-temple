@@ -14,6 +14,12 @@ include z-android-base.mk
 include plugin/z-plugin.mk
 include demo/z-demo.mk
 
+.PHONY: ci.debug
+ci.debug: init pluginTest pluginJacocoReportDebug pluginAssembleDebug demoTest demoAssembleDebug
+
+.PHONY: ci
+ci: ci.debug
+
 .PHONY: help
 help: help-plugin help-demo help.android.base
 	@echo "more task see Makefile!"

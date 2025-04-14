@@ -185,7 +185,7 @@ subprojects {
 
         android_test_depends = [
                 "androidx.test.ext:junit"                             : "androidx.test.ext:junit:1.1.2",
-                "androidx.test.espresso:espresso-core"                : "androidx.test.espresso:espresso-core:3.3.0",
+                "androidx.test.espresso:espresso-core"                : "androidx.test.espresso:espresso-core:3.5.0",
                 "com.jayway.android.robotium:robotium-solo"           : "com.jayway.android.robotium:robotium-solo:5.5.4",
                 "com.android.support.test.uiautomator:uiautomator-v18": "com.android.support.test.uiautomator:uiautomator-v18:2.1.1",
         ]

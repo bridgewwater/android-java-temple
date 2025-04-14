@@ -3,8 +3,6 @@ package com.sinlov.android.plugin;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import java.io.File;
-
 import temp.RoboTemp;
 import temp.utils.AssetsFileUtils;
 

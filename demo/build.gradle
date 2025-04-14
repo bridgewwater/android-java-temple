@@ -64,7 +64,7 @@ android {
             // https://developer.android.com/studio/test
             all {
                 // Sets JVM argument(s) for the test JVM(s).
-                jvmArgs '-XX:MaxPermSize=256m'
+                // jvmArgs '-XX:MaxPermSize=256m'
             }
         }
     }
