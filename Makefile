@@ -14,12 +14,26 @@ include z-android-base.mk
 include plugin/z-plugin.mk
 include demo/z-demo.mk
 
-.PHONY: ci.debug
-ci.debug: init pluginTest pluginJacocoReportDebug pluginAssembleDebug demoTest demoAssembleDebug
+.PHONY: dep
+dep: demoDependImplementation pluginDependImplementation
+
+.PHONY: test
+test: demoTest pluginTest
+
+.PHONY: assemble.debug
+assemble.debug: pluginAssembleDebug demoAssembleDebug
+
+.PHONY: ci.prepare
+ci.prepare: env init
 
 .PHONY: ci
-ci: ci.debug
+ci: ci.prepare test assemble.debug
 
 .PHONY: help
 help: help-plugin help-demo help.android.base
+	@echo ""
+	@echo "make dep                          ~> show all depend implementation"
+	@echo "make test                         ~> run all test"
+	@echo "make ci                           ~> run fast as CI"
+	@echo ""
 	@echo "more task see Makefile!"
