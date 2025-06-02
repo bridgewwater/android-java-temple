@@ -24,8 +24,8 @@ repo: [https://github.com/bridgewwater/android-java-temple](https://github.com/b
 | item                           | version |
 |:-------------------------------|:--------|
 | androidx.annotation:annotation | 1.2.0   |
-| androidx.multidex:multidex     | 2.0.1   |
 | androidx.appcompat:appcompat   | 1.2.0   |
+| androidx.multidex:multidex     | 2.0.1   |
 
 - test library version
 
