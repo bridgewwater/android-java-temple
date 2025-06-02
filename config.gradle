@@ -173,7 +173,7 @@ subprojects {
                 // https://robolectric.org/ https://github.com/robolectric/robolectric
                 "org.robolectric:robolectric"             : "org.robolectric:robolectric:4.10.3",
                 "org.robolectric:shadows-multidex"        : "org.robolectric:shadows-multidex:4.10.3",
-                "org.robolectric:shadows-framework"       : "org.robolectric:shadows-framework:4.3",
+                "org.robolectric:shadows-framework"       : "org.robolectric:shadows-framework:4.4",
                 // deprecated
                 "org.robolectric:shadows-support-v4"      : "org.robolectric:shadows-support-v4:3.3.2",
                 "org.easymock:easymock"                   : "org.easymock:easymock:4.2",
