@@ -135,7 +135,7 @@ dependencies {
     implementation depends["com.github.getActivity:XXPermissions"]
     implementation depends["com.github.getActivity:ToastUtils"]
 // https://github.com/EastWoodYang/AutoQuickAdapter
-    implementation depends["com.eastwood.common:auto-quick-adapter"]
+//    implementation depends["com.eastwood.common:auto-quick-adapter"]
 
     if (isReleaseBuild()) {
         //todo release depends
