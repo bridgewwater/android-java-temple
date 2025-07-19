@@ -52,9 +52,7 @@ jobs:
   deploy-tag:
     needs:
       - version
-      - go-goreleaser-by-tag
-      # - docker-bake-multi-basic-all-tag
-      # - go-release-platform
+      # - android-release-platform
     name: deploy-tag
     uses: ./.github/workflows/deploy-tag.yml
     if: startsWith(github.ref, 'refs/tags/')
