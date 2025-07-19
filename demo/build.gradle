@@ -132,8 +132,8 @@ dependencies {
 
     // implementation biz
     implementation depends["com.jakewharton.timber:timber"]
-    implementation depends["com.hjq:xxpermissions"]
-    implementation depends["com.hjq:toast"]
+    implementation depends["com.github.getActivity:XXPermissions"]
+    implementation depends["com.github.getActivity:ToastUtils"]
 // https://github.com/EastWoodYang/AutoQuickAdapter
     implementation depends["com.eastwood.common:auto-quick-adapter"]
 

@@ -92,8 +92,12 @@ subprojects {
                 "com.github.chrisbanes:PhotoView"              : "com.github.chrisbanes:PhotoView:2.3.0",
                 // 权限请求框架：https://github.com/getActivity/XXPermissions
                 "com.hjq:xxpermissions"                        : "com.hjq:xxpermissions:10.6",
+                // // https://jitpack.io/#com.github.getActivity/XXPermissions
+                "com.github.getActivity:XXPermissions"         : "com.github.getActivity:XXPermissions:10.8",
                 // https://github.com/getActivity/ToastUtils
                 "com.hjq:toast"                                : "com.hjq:toast:8.8",
+                // https://jitpack.io/#com.github.getActivity/ToastUtils
+                "com.github.getActivity:ToastUtils": "com.github.getActivity:ToastUtils:9.6",
                 // https://github.com/getActivity/TitleBar
                 "com.hjq:titlebar"                             : "com.hjq:titlebar:8.2",
                 // Gson 解析容错：https://github.com/getActivity/GsonFactory
@@ -108,7 +112,7 @@ subprojects {
                 // https://github.com/getActivity/Logcat
                 "com.hjq:logcat"                            : "com.hjq:logcat:9.8",
                 // https://jitpack.io/#com.github.getActivity/Logcat
-                "com.github.getActivity:Logcat"                            : "com.github.getActivity:Logcat:9.8",
+                "com.github.getActivity:Logcat"             : "com.github.getActivity:Logcat:9.8",
         ]
 
         depends_android_x = [
