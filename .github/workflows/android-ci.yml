@@ -5,6 +5,7 @@ on:
 
 jobs:
   build:
+    name: build-jdk
     strategy:
       matrix:
         jdk:

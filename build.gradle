@@ -17,6 +17,7 @@ buildscript {
         mavenLocal()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        jcenter { url 'https://jcenter.bintray.com/'}
         google()
     }
 
@@ -43,8 +44,9 @@ allprojects {
 //        }
         // public java and android repository
 //        maven { url 'https://maven.aliyun.com/repository/public/' }
-        maven { url 'https://jitpack.io' }
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        jcenter { url 'https://jcenter.bintray.com/'}
         google()
     }
 
