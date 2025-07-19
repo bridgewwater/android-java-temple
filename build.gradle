@@ -14,10 +14,19 @@ buildscript {
     apply from: rootProject.file("config.gradle")
 
     repositories {
+        all { ArtifactRepository repo ->
+            println repo.url.toString()
+            if (repo.url.toString().startsWith("https://jcenter.bintray.com/")) {
+                project.logger.warn "Repository ${repo.url} removed."
+                remove repo
+                mavenCentral()
+            }
+        }
+        gradlePluginPortal()
         mavenLocal()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        jcenter { url 'https://jcenter.bintray.com/'}
+//        jcenter { url 'https://jcenter.bintray.com/'}
         google()
     }
 
@@ -32,6 +41,15 @@ buildscript {
 allprojects {
 
     repositories {
+        all { ArtifactRepository repo ->
+            println repo.url.toString()
+            if (repo.url.toString().startsWith("https://jcenter.bintray.com/")) {
+                project.logger.warn "Repository ${repo.url} removed."
+                remove repo
+                mavenCentral()
+            }
+        }
+        gradlePluginPortal()
         mavenLocal()
         // for custom android repository
 //        maven { url LIB_CUSTOM_ANDROID_REPOSITORY_URL }
@@ -46,7 +64,7 @@ allprojects {
 //        maven { url 'https://maven.aliyun.com/repository/public/' }
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        jcenter { url 'https://jcenter.bintray.com/'}
+//        jcenter { url 'https://jcenter.bintray.com/'}
         google()
     }
 
