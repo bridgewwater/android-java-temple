@@ -112,7 +112,7 @@ dependencies {
     // test end
 
     // logcat window https://github.com/getActivity/Logcat
-    debugImplementation depends_debug["com.hjq:logcat"]
+    debugImplementation depends_debug["com.github.getActivity:Logcat"]
 
     // butter knife only for module test!
 //    implementation depends.butterknife

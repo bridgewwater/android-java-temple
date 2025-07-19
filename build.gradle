@@ -43,8 +43,8 @@ allprojects {
 //        }
         // public java and android repository
 //        maven { url 'https://maven.aliyun.com/repository/public/' }
-        mavenCentral()
         maven { url 'https://jitpack.io' }
+        mavenCentral()
         google()
     }
 
