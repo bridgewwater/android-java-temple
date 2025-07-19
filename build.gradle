@@ -14,7 +14,9 @@ buildscript {
     apply from: rootProject.file("config.gradle")
 
     repositories {
+        mavenLocal()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
         google()
     }
 
@@ -40,9 +42,9 @@ allprojects {
 //            maven { url REPO_SNAPSHOT_REPOSITORY_URL }
 //        }
         // public java and android repository
-//        maven { url 'https://jitpack.io' }
 //        maven { url 'https://maven.aliyun.com/repository/public/' }
         mavenCentral()
+        maven { url 'https://jitpack.io' }
         google()
     }
 
